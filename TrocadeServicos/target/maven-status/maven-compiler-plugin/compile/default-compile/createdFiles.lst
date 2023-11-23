@@ -1,0 +1,9 @@
+com\mycompany\trocadeservicos\AppController.class
+com\mycompany\trocadeservicos\db\DbCadastro.class
+com\mycompany\trocadeservicos\db\DbConnection.class
+com\mycompany\trocadeservicos\controller\CadastroController.class
+com\mycompany\trocadeservicos\view\AppView.class
+com\mycompany\trocadeservicos\view\CadastroView.class
+com\mycompany\trocadeservicos\controller\ServicoController.class
+com\mycompany\trocadeservicos\model\Cadastro.class
+com\mycompany\trocadeservicos\TrocadeServicos.class
