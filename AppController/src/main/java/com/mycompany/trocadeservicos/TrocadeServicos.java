@@ -8,11 +8,10 @@ import com.mycompany.trocadeservicos.view.AppView;
 
 /**
  *
+<<<<<<< HEAD
  * @author Yasmin
  */
 public class TrocadeServicos {
      public static void main(String[] args) throws Exception {
-        AppView aV = new AppView();
-        aV.menuInicial();
-    }
+
 }

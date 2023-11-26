@@ -19,7 +19,11 @@ public class DbCadastroTest {
     
 
     /**
+<<<<<<< HEAD:AppController/src/test/java/com/mycompany/trocadeservicos/db/DbCadastroTest.java
      * Test of salvarCadastro method, of class DbPerfil.
+=======
+     * Test of salvarCadastro method, of class DbCadastro.
+>>>>>>> 737c46096e75f90090be592341e81a9479c9d2ba:TrocadeServicos/src/test/java/com/mycompany/trocadeservicos/db/DbCadastroTest.java
      */
     @Test
     public void testSalvarCadastro() throws Exception {
@@ -28,7 +32,11 @@ public class DbCadastroTest {
         int idade = 40;
         String email = "cida@gmail.com";
         String cpf = "";
+<<<<<<< HEAD:AppController/src/test/java/com/mycompany/trocadeservicos/db/DbCadastroTest.java
         DbPerfil instance = new DbPerfil();
+=======
+        DbCadastro instance = new DbCadastro();
+>>>>>>> 737c46096e75f90090be592341e81a9479c9d2ba:TrocadeServicos/src/test/java/com/mycompany/trocadeservicos/db/DbCadastroTest.java
         instance.salvarCadastro(nome, idade, email, cpf);
        
     }
