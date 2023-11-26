@@ -4,6 +4,7 @@
  */
 package com.mycompany.trocadeservicos.controller;
 
+<<<<<<< HEAD:AppController/src/main/java/com/mycompany/trocadeservicos/controller/Controller.java
 import com.mycompany.trocadeservicos.model.Perfil;
 import com.mycompany.trocadeservicos.view.AppView;
 import com.mycompany.trocadeservicos.view.PerfilView;
@@ -14,17 +15,37 @@ public class Controller {
     PerfilView perfilview = new PerfilView();
     PerfilController perfilcon = new PerfilController();
 
+=======
+import com.mycompany.trocadeservicos.model.Cadastro;
+import com.mycompany.trocadeservicos.view.AppView;
+import com.mycompany.trocadeservicos.view.CadastroView;
+import com.mycompany.trocadeservicos.controller.CadastroController;
+
+public class ServicoController {
+    
+    CadastroView cadview = new CadastroView();
+    CadastroController cadcon = new CadastroController();
+    
+>>>>>>> 737c46096e75f90090be592341e81a9479c9d2ba:AppController/src/main/java/com/mycompany/trocadeservicos/controller/ServicoController.java
     public void menu(int escolha) throws Exception {
         switch (escolha) {
             case 1:
                 cadastrarPerfil();
                 break;
+<<<<<<< HEAD:AppController/src/main/java/com/mycompany/trocadeservicos/controller/Controller.java
             case 2:
                 visualizarPerfil();
                 break;
 
             /*
             
+=======
+
+            /*
+            case 2:
+                opcao2();
+                break;
+>>>>>>> 737c46096e75f90090be592341e81a9479c9d2ba:AppController/src/main/java/com/mycompany/trocadeservicos/controller/ServicoController.java
             case 3:
                 opcao3();
                 break;
@@ -52,6 +73,7 @@ public class Controller {
 
              */
         }
+<<<<<<< HEAD:AppController/src/main/java/com/mycompany/trocadeservicos/controller/Controller.java
 
     }
 
@@ -74,6 +96,37 @@ public class Controller {
             PerfilView.falhaCadastro();
         }
     }
+=======
+        
+    }
+    
+    public void cadastrarPerfil() {
+        try {
+            Cadastro cad = cadview.View();
+            cadcon.cadastrar(cad);
+            CadastroView.sucessoCadastro();
+        } catch (Exception ex) {
+            CadastroView.falhaCadastro();
+        }
+    }
+    
+    public void opcao1() throws Exception {
+        int iniciarcadastro = AppView.mensagemAlertaCadastro();
+        switch (iniciarcadastro) {
+            case 1:
+                cadastrarPerfil();
+                break;
+            case 2:
+                AppView.naoProcederCadastro();
+                break;
+            default:
+                AppView.mostraMsgInvalida();
+                break;
+        }
+    }
+
+
+>>>>>>> 737c46096e75f90090be592341e81a9479c9d2ba:AppController/src/main/java/com/mycompany/trocadeservicos/controller/ServicoController.java
     /*
     public void opcao2() {
         PerfilController perfil = new PerfilController();

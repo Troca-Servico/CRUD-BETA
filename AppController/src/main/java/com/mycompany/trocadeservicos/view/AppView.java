@@ -4,18 +4,30 @@
  */
 package com.mycompany.trocadeservicos.view;
 
+<<<<<<< HEAD:AppController/src/main/java/com/mycompany/trocadeservicos/view/AppView.java
 import com.mycompany.trocadeservicos.controller.Controller;
+=======
+import com.mycompany.trocadeservicos.controller.ServicoController;
+>>>>>>> 737c46096e75f90090be592341e81a9479c9d2ba:TrocadeServicos/src/main/java/com/mycompany/trocadeservicos/view/AppView.java
 import java.util.Scanner;
 
 public class AppView {
     
+<<<<<<< HEAD:AppController/src/main/java/com/mycompany/trocadeservicos/view/AppView.java
     Controller servcont = new Controller();
+=======
+    ServicoController servcont = new ServicoController();
+>>>>>>> 737c46096e75f90090be592341e81a9479c9d2ba:TrocadeServicos/src/main/java/com/mycompany/trocadeservicos/view/AppView.java
     
     public void menuInicial() throws Exception {
         Scanner input = new Scanner(System.in);
         System.out.println("-------------------");
         System.out.println("Escolha uma opcao: ");
+<<<<<<< HEAD:AppController/src/main/java/com/mycompany/trocadeservicos/view/AppView.java
         System.out.println("[1] Cadastrar Perfil");
+=======
+        System.out.println("[1] Cadastrar");
+>>>>>>> 737c46096e75f90090be592341e81a9479c9d2ba:TrocadeServicos/src/main/java/com/mycompany/trocadeservicos/view/AppView.java
         System.out.println("[2] Visualizar Perfil");
         System.out.println("[3] Atualizar Perfil");
         System.out.println("[4] Deletar Perfil");
