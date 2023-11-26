@@ -1,0 +1,10 @@
+com\mycompany\trocadeservicos\AppController.class
+com\mycompany\trocadeservicos\controller\PerfilController.class
+com\mycompany\trocadeservicos\db\DbPerfil.class
+com\mycompany\trocadeservicos\db\DbConnection.class
+com\mycompany\trocadeservicos\view\AppView.class
+com\mycompany\trocadeservicos\controller\Controller.class
+com\mycompany\trocadeservicos\controller\ServicoController.class
+com\mycompany\trocadeservicos\model\Perfil.class
+com\mycompany\trocadeservicos\TrocadeServicos.class
+com\mycompany\trocadeservicos\view\PerfilView.class
