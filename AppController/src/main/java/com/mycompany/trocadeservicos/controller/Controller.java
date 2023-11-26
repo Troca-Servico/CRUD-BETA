@@ -22,37 +22,13 @@ public class Controller {
             case 2:
                 visualizarPerfil();
                 break;
-
-            /*
-            
             case 3:
-                opcao3();
+                atualizarPerfil();
                 break;
             case 4:
-                opcao4();
+                deletarPerfil();
                 break;
-            case 5:
-                opcao5();
-                break;
-            case 6:
-                opcao6();
-                break;
-            case 7:
-                opcao7();
-                break;
-            case 8:
-                opcao8();
-                break;
-            case 9:
-                opcao9();
-                break;
-            case 10:
-                opcao10();
-                break;
-
-             */
         }
-
     }
 
     public void cadastrarPerfil() {
@@ -69,64 +45,29 @@ public class Controller {
         try {
             String cpf = perfilview.solicitarCpf();
             perfilcon.visualizar(cpf);
-            //PerfilView.sucessoCadastro();
         } catch (Exception ex) {
             PerfilView.falhaCadastro();
         }
     }
-    /*
-    public void opcao2() {
-        PerfilController perfil = new PerfilController();
-        boolean resp = perfil.visualizarPerfil();
-        if (resp == false) {
-            perfilView.falhaVisuPerfil();
-        } else {
-            perfilView.mostrarInfosPerfil();
+
+    public void atualizarPerfil() {
+        try {
+            String cpf = perfilview.solicitarCpf();
+            int opcao = perfilview.selecionarOpcao();
+            perfilcon.atualizar(opcao, cpf);
+        } catch (Exception e) {
+            // tratamento da exceção
         }
+
     }
 
-    public void opcao3() {
-        PerfilController perfil = new PerfilController();
-        boolean resp = perfil.atualizarPerfil();
-        if (resp == false) {
-            perfilView.falhaAtualizacao();
-        } else {
-            perfilView.sucessoAtualizacao();
+    public void deletarPerfil() {
+        try {
+            String cpf = perfilview.solicitarCpf();
+            perfilcon.deletar(cpf);
+        } catch (Exception e) {
+            // tratamento da exceção
         }
-    }
-
-    public void opcao4() {
-        PerfilController perfil = new PerfilController();
-        boolean resp = perfil.deletarPerfil();
-        if (resp == false) {
-            perfilView.falhaDeletarPerfil();
-        } else {
-            perfilView.deletarPerfil();
-        }
-    }
-
-    public void opcao5() {
 
     }
-
-    public void opcao6() {
-
-    }
-
-    public void opcao7() {
-
-    }
-
-    public void opcao8() {
-
-    }
-
-    public void opcao9() {
-
-    }
-
-    public void opcao10() {
-
-    }
-     */
 }

@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.mycompany.trocadeservicos.model.Perfil;
+import com.mycompany.trocadeservicos.view.PerfilView;
 
 public class DbPerfil {
 
@@ -70,4 +71,50 @@ public class DbPerfil {
         }
     }
 
+    public String atualizarPerfil(String cpf, String campo, String atualizacao) throws Exception {
+        String retorno = ""; // Inicialize a variável retorno fora do try-catch para que possa ser acessada fora do escopo
+
+        try {
+            String sql = "UPDATE perfil SET " + campo + " = ? WHERE cpf = ?";
+            try (Connection connect = new DbConnection().getConnection(); PreparedStatement ps = connect.prepareStatement(sql)) {
+                ps.setString(1, atualizacao);
+                ps.setString(2, cpf);
+
+                // Executar a atualização
+                int linhasAfetadas = ps.executeUpdate();
+
+                if (linhasAfetadas > 0) {
+                    retorno = "Atualização realizada com sucesso!";
+                } else {
+                    retorno = "Nenhum registro atualizado para o CPF informado.";
+                }
+            } catch (SQLException ex) {
+                retorno = ex.getMessage();
+            }
+            return retorno; // Mova o retorno para fora do try-catch para que seja acessível em todo o método
+        } catch (Exception e) {
+            throw new Exception("Erro ao atualizar perfil: " + e.getMessage());
+        }
+    }
+
+    public String deletarPerfil(String cpf) throws Exception {
+        String retorno = "";
+        try {
+            String sql = "DELETE FROM perfil WHERE cpf = ?";
+            try (Connection connect = new DbConnection().getConnection(); PreparedStatement ps = connect.prepareStatement(sql)) {
+                ps.setString(1, cpf);
+                int linhasAfetadas = ps.executeUpdate();
+                if (linhasAfetadas > 0) {
+                    retorno = "Exclusão realizada com sucesso!";
+                } else {
+                    retorno = "Nenhum registro excluído para o CPF informado.";
+                }
+            } catch (SQLException ex) {
+                retorno = ex.getMessage();
+            }
+            return retorno;
+        } catch (Exception e) {
+            throw new Exception("Erro ao excluir perfil: " + e.getMessage());
+        }
+    }
 }
