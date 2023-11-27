@@ -9,7 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.sql.SQLException;
 
 /**
@@ -53,6 +55,7 @@ public class DbServico {
                         String bairro = resultSet.getString("bairro");
                         String tempoEx = resultSet.getString("tempo_ex");
                         String cpf = resultSet.getString("cpf");
+                        String id = resultSet.getString("id");
                         Servico servico = new Servico(area, descServ, cidade, bairro, tempoEx, cpf);
                         servicos.add(servico);
                     }
@@ -88,6 +91,55 @@ public class DbServico {
             return retorno; // Mova o retorno para fora do try-catch para que seja acessível em todo o método
         } catch (Exception e) {
             throw new Exception("Erro ao atualizar perfil: " + e.getMessage());
+        }
+    }
+
+    public List<Map<String, String>> listarServicos(String cpfse) throws Exception {
+        List<Map<String, String>> infosList = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM servicos WHERE cpf = ?";
+            Connection connect = new DbConnection().getConnection();
+            try (PreparedStatement ps = connect.prepareStatement(sql)) {
+                ps.setString(1, cpfse);
+                try (ResultSet resultSet = ps.executeQuery()) {
+                    while (resultSet.next()) {
+                        Map<String, String> infos = new HashMap<>();
+                        String area = resultSet.getString("area");
+                        String descServ = resultSet.getString("desc_serv");
+                        String id = resultSet.getString("id");
+                        infos.put("id", id);
+                        infos.put("area", area);
+                        infos.put("descricao", descServ);
+                        infosList.add(infos);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            // Trate a exceção conforme necessário
+        }
+        return infosList;
+    }
+
+    public String deletarServico(String id) throws Exception {
+        String retorno = "";
+        try {
+            String sql = "DELETE FROM servicos WHERE id = ?";
+            try (Connection connect = new DbConnection().getConnection(); PreparedStatement ps = connect.prepareStatement(sql)) {
+                ps.setString(1, id);
+                int linhasAfetadas = ps.executeUpdate();
+                if (linhasAfetadas > 0) {
+                    retorno = "Exclusão realizada com sucesso!";
+                } else {
+                    retorno = "Id nao identificado";
+                }
+            } catch (SQLException ex) {
+                retorno = ex.getMessage();
+            }
+            return retorno;
+        } catch (Exception e) {
+            throw new Exception("Erro ao excluir perfil: " + e.getMessage());
         }
     }
 }

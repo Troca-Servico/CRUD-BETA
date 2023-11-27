@@ -9,6 +9,7 @@ import com.mycompany.trocadeservicos.model.Servico;
 import com.mycompany.trocadeservicos.view.ServicoView;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Map;
 
 public class ServicoController {
 
@@ -23,6 +24,13 @@ public class ServicoController {
     public void visualizar(String area) throws Exception {
         List<Servico> objServico = caddb.buscarServicos(area);
         servicoview.mostrarServicos(objServico);
+    }
+
+    public void deletar(String cpf) throws Exception {
+        List<Map<String, String>> objServico = caddb.listarServicos(cpf);
+        String id = servicoview.listarServicos(objServico);
+        String retorno = caddb.deletarServico(id);
+        System.out.println(retorno);
     }
 
     public void atualizar(int opcao, String cpf) throws Exception {

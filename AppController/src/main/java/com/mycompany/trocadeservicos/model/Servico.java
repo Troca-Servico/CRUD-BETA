@@ -16,6 +16,7 @@ public class Servico {
     private String bairro;
     private String tempoEx;
     private String cpf;
+    private int id;
 
     public Servico(String area, String descSer, String cidade, String bairro, String tempoEx, String cpf) {
         this.area = area;
@@ -24,6 +25,10 @@ public class Servico {
         this.bairro = bairro;
         this.tempoEx = tempoEx;
         this.cpf = cpf;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getCpf() {

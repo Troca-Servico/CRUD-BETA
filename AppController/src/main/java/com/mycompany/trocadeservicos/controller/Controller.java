@@ -43,8 +43,17 @@ public class Controller {
                 atualizarServico();
                 break;
             case 8:
-                //deletarServico();
+                deletarServico();
                 break;
+        }
+    }
+
+    public void deletarServico() {
+        try {
+            String cpf = servicoview.solicitarCpf();
+            servicocon.deletar(cpf);
+        } catch (Exception e) {
+            System.out.println("Exceção capturada: " + e.getMessage());
         }
     }
 
@@ -54,7 +63,7 @@ public class Controller {
             int opcao = servicoview.selecionarOpcao();
             servicocon.atualizar(opcao, cpf);
         } catch (Exception e) {
-            // tratamento da exceção
+            System.out.println("Exceção capturada: " + e.getMessage());
         }
     }
 
@@ -90,8 +99,8 @@ public class Controller {
         try {
             String cpf = perfilview.solicitarCpf();
             perfilcon.visualizar(cpf);
-        } catch (Exception ex) {
-            PerfilView.falhaCadastro();
+        } catch (Exception e) {
+            System.out.println("Exceção capturada: " + e.getMessage());
         }
     }
 
@@ -101,7 +110,7 @@ public class Controller {
             int opcao = perfilview.selecionarOpcao();
             perfilcon.atualizar(opcao, cpf);
         } catch (Exception e) {
-            // tratamento da exceção
+            System.out.println("Exceção capturada: " + e.getMessage());
         }
     }
 
@@ -110,8 +119,7 @@ public class Controller {
             String cpf = perfilview.solicitarCpf();
             perfilcon.deletar(cpf);
         } catch (Exception e) {
-            // tratamento da exceção
+            System.out.println("Exceção capturada: " + e.getMessage());
         }
-
     }
 }

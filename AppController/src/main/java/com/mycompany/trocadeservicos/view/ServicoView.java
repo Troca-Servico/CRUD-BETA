@@ -9,6 +9,7 @@ import java.util.Scanner;
 import com.mycompany.trocadeservicos.model.Servico;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -59,6 +60,25 @@ public class ServicoView {
                 System.out.println("----------------------------------------");
             }
         }
+    }
+
+    public String listarServicos(List<Map<String, String>> infos) {
+        if (infos.isEmpty()) {
+            System.out.println("Nenhum serviço encontrado para o cpf especificado.");
+        } else {
+            System.out.println("Lista de Serviços:");
+            for (Map<String, String> info : infos) {
+                System.out.println("----------------------------------------");
+                System.out.println("*Id*: " + info.get("id"));
+                System.out.println("Área: " + info.get("area"));
+                System.out.println("Descrição do Serviço: " + info.get("descricao"));
+            }
+            Scanner input = new Scanner(System.in);
+            System.out.println("Agora digite o ID do servico que deseja deletar");
+            String id = input.nextLine();
+            return id;
+        }
+        return null;
     }
 
     public int selecionarOpcao() {
