@@ -61,6 +61,19 @@ public class ServicoView {
         }
     }
 
+    public int selecionarOpcao() {
+        Scanner input = new Scanner(System.in);
+        int opcao;
+        System.out.println("Por gentileza digite o numero da opção que deseja atualizar:");
+        System.out.println("[1] Atualizar area");
+        System.out.println("[2] Atualizar descricao do serviço");
+        System.out.println("[3] Atualizar cidade");
+        System.out.println("[4] Atualizar bairro");
+        System.out.println("[9] Atualizar tempo de experiencia");
+        opcao = input.nextInt();
+        return opcao;
+    }
+
     public String solicitarCpf() {
         Scanner input = new Scanner(System.in);
         System.out.println("digite seu cpf por gentileza:");
@@ -83,22 +96,4 @@ public class ServicoView {
         System.out.println("Habilidades: " + perfil.getHabilidades());
     }
 
-    public int selecionarOpcao() {
-        Scanner input = new Scanner(System.in);
-        int opcao;
-        System.out.println("Por gentileza digite o numero da opção que deseja atualizar:");
-        System.out.println("[1] Atualizar nome");
-        System.out.println("[2] Atualizar idade");
-        System.out.println("[3] Atualizar email");
-        System.out.println("[4] Atualizar cpf");
-        System.out.println("[5] Atualizar descrição do serviço oferecido");
-        System.out.println("[6] Atualizar cidade do estabelecimento");
-        System.out.println("[7] Atualizar bairro do estabelecimento");
-        System.out.println("[8] Atualizar areas de interesse");
-        System.out.println("[9] Atualizar tempo de experiencia");
-        System.out.println("[10] Atualizar foto do perfil");
-        System.out.println("[10] Atualizar habilidades");
-        opcao = input.nextInt();
-        return opcao;
-    }
 }

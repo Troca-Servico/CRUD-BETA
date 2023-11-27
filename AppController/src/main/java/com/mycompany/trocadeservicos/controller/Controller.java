@@ -39,6 +39,22 @@ public class Controller {
             case 6:
                 pesquisarServico();
                 break;
+            case 7:
+                atualizarServico();
+                break;
+            case 8:
+                //deletarServico();
+                break;
+        }
+    }
+
+    public void atualizarServico() {
+        try {
+            String cpf = servicoview.solicitarCpf();
+            int opcao = servicoview.selecionarOpcao();
+            servicocon.atualizar(opcao, cpf);
+        } catch (Exception e) {
+            // tratamento da exceção
         }
     }
 
@@ -87,7 +103,6 @@ public class Controller {
         } catch (Exception e) {
             // tratamento da exceção
         }
-
     }
 
     public void deletarPerfil() {

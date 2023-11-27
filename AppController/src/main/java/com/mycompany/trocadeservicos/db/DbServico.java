@@ -65,4 +65,29 @@ public class DbServico {
         return servicos;
     }
 
+    public String atualizarServico(String cpf, String campo, String atualizacao) throws Exception {
+        String retorno = ""; // Inicialize a variável retorno fora do try-catch para que possa ser acessada fora do escopo
+
+        try {
+            String sql = "UPDATE servicos SET " + campo + " = ? WHERE cpf = ?";
+            try (Connection connect = new DbConnection().getConnection(); PreparedStatement ps = connect.prepareStatement(sql)) {
+                ps.setString(1, atualizacao);
+                ps.setString(2, cpf);
+
+                // Executar a atualização
+                int linhasAfetadas = ps.executeUpdate();
+
+                if (linhasAfetadas > 0) {
+                    retorno = "Atualização realizada com sucesso!";
+                } else {
+                    retorno = "Nenhum registro atualizado para o CPF informado.";
+                }
+            } catch (SQLException ex) {
+                retorno = ex.getMessage();
+            }
+            return retorno; // Mova o retorno para fora do try-catch para que seja acessível em todo o método
+        } catch (Exception e) {
+            throw new Exception("Erro ao atualizar perfil: " + e.getMessage());
+        }
+    }
 }

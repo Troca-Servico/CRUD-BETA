@@ -24,4 +24,34 @@ public class ServicoController {
         List<Servico> objServico = caddb.buscarServicos(area);
         servicoview.mostrarServicos(objServico);
     }
+
+    public void atualizar(int opcao, String cpf) throws Exception {
+        String campo;
+        switch (opcao) {
+            case 1:
+                campo = "area";
+                break;
+            case 2:
+                campo = "desc_serv";
+                break;
+            case 3:
+                campo = "cidade";
+                break;
+            case 4:
+                campo = "bairro";
+                break;
+            case 5:
+                campo = "tempo_ex";
+                break;
+            // Adicione os outros casos conforme necessário
+            default:
+                campo = "";
+                System.out.println("Opcao invalida"); // Ou algum valor padrão, dependendo da lógica do seu programa
+                break;
+        }
+        System.out.println("OK, em seguida digite sua atualização por gentileza:");
+        String atualizacao = input.nextLine();
+        String retorno = caddb.atualizarServico(cpf, campo, atualizacao);
+        System.out.println(retorno);
+    }
 }

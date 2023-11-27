@@ -22,6 +22,9 @@ public class AppView {
         System.out.println("[4] Deletar Perfil");
         System.out.println("[5] Publicar Servicos");
         System.out.println("[6] Pesquisar Servicos");
+        System.out.println("[7] Atualizar Servico");
+        System.out.println("[8] Deletar Servico");
+
         System.out.println("[7] Solicitar Servicos");
         System.out.println("[8] Cancelar Servico");
         System.out.println("[9] Listar Servicos nao aceitos");
