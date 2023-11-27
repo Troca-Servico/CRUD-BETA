@@ -33,6 +33,15 @@ public class ServicoController {
         System.out.println(retorno);
     }
 
+    public void avaliar(String cpf) throws Exception {
+        List<Map<String, String>> objServico = caddb.listarPerfis(cpf);
+        String id = servicoview.listarPerfis(objServico);
+        System.out.println("OK, de 0 a 10 qual é a sua avaliacao?:");
+        int atualizacao = input.nextInt();
+        String retorno = caddb.avaliarPerfil(id, atualizacao);
+        System.out.println(retorno);
+    }
+
     public void atualizar(int opcao, String cpf) throws Exception {
         List<Map<String, String>> objServico = caddb.listarServicos(cpf);
         String id = servicoview.listarServicos(objServico);

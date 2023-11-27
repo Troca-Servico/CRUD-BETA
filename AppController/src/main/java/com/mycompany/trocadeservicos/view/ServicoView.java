@@ -10,6 +10,8 @@ import com.mycompany.trocadeservicos.model.Servico;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.lang.InterruptedException;
+import java.lang.Thread;
 
 /**
  *
@@ -101,6 +103,16 @@ public class ServicoView {
         return cpf;
     }
 
+    public void deslogar() {
+        System.out.println("Saindo...");
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            System.out.println("Exceção capturada: " + e.getMessage());
+        }
+        System.out.println("*tela principal*...");
+    }
+
     public void mostrarInfosPerfil(Perfil perfil) {
         System.out.println("Segue informações cadastradas no seu perfil");
         System.out.println("Nome: " + perfil.getNome());
@@ -116,4 +128,22 @@ public class ServicoView {
         System.out.println("Habilidades: " + perfil.getHabilidades());
     }
 
+    public String listarPerfis(List<Map<String, String>> infos) {
+        if (infos.isEmpty()) {
+            System.out.println("Nenhum serviço encontrado para o cpf especificado.");
+        } else {
+            System.out.println("Lista de perfis:");
+            for (Map<String, String> info : infos) {
+                System.out.println("----------------------------------------");
+                System.out.println("*Id*: " + info.get("id"));
+                System.out.println("Nome: " + info.get("nome"));
+                System.out.println("Cidade: " + info.get("cidade"));
+            }
+            Scanner input = new Scanner(System.in);
+            System.out.println("Agora digite o ID do perfil que deseja avaliar");
+            String id = input.nextLine();
+            return id;
+        }
+        return null;
+    }
 }

@@ -45,7 +45,26 @@ public class Controller {
             case 8:
                 deletarServico();
                 break;
+            case 9:
+                avaliarPerfis();
+                break;
+            case 10:
+                sair();
+                break;
         }
+    }
+
+    public void avaliarPerfis() {
+        try {
+            String cpf = servicoview.solicitarCpf();
+            servicocon.avaliar(cpf);
+        } catch (Exception e) {
+            System.out.println("Exceção capturada: " + e.getMessage());
+        }
+    }
+
+    public void sair() {
+        servicoview.deslogar();
     }
 
     public void deletarServico() {

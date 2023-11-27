@@ -142,4 +142,77 @@ public class DbServico {
             throw new Exception("Erro ao excluir perfil: " + e.getMessage());
         }
     }
+
+    public List<Map<String, String>> listarPerfis(String cpfse) throws Exception {
+        List<Map<String, String>> infosList = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM perfil";
+            Connection connect = new DbConnection().getConnection();
+            try (PreparedStatement ps = connect.prepareStatement(sql)) {
+                try (ResultSet resultSet = ps.executeQuery()) {
+                    while (resultSet.next()) {
+                        Map<String, String> infos = new HashMap<>();
+                        String nome = resultSet.getString("nome");
+                        String cidade = resultSet.getString("cidade");
+                        String id = resultSet.getString("id");
+                        infos.put("id", id);
+                        infos.put("nome", nome);
+                        infos.put("cidade", cidade);
+                        infosList.add(infos);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            // Trate a exceção conforme necessário
+        }
+        return infosList;
+    }
+
+    public String avaliarPerfil(String id, int valorASomar) throws Exception {
+        String retorno = "";
+
+        try {
+            // Passo 1: Recuperar o valor atual do campo no banco
+            String sqlSelect = "SELECT avaliacoes FROM perfil WHERE id = ?";
+            try (Connection connect = new DbConnection().getConnection(); PreparedStatement psSelect = connect.prepareStatement(sqlSelect)) {
+                psSelect.setString(1, id);
+
+                try (ResultSet resultSet = psSelect.executeQuery()) {
+                    if (resultSet.next()) {
+                        int valorAtual = resultSet.getInt("avaliacoes");
+
+                        // Passo 2: Somar o valor recebido ao valor atual
+                        int novoValor = valorAtual + valorASomar;
+
+                        // Passo 3: Atualizar o banco com o novo valor
+                        String sqlUpdate = "UPDATE perfil SET avaliacoes = ? WHERE id = ?";
+                        try (PreparedStatement psUpdate = connect.prepareStatement(sqlUpdate)) {
+                            psUpdate.setInt(1, novoValor);
+                            psUpdate.setString(2, id);
+
+                            // Executar a atualização
+                            int linhasAfetadas = psUpdate.executeUpdate();
+
+                            if (linhasAfetadas > 0) {
+                                retorno = "Atualização realizada com sucesso!";
+                            } else {
+                                retorno = "Nenhum registro atualizado para o ID informado.";
+                            }
+                        }
+                    } else {
+                        retorno = "Nenhum registro encontrado para o ID informado.";
+                    }
+                }
+            } catch (SQLException ex) {
+                retorno = ex.getMessage();
+            }
+
+            return retorno;
+        } catch (Exception e) {
+            throw new Exception("Erro ao atualizar perfil: " + e.getMessage());
+        }
+    }
+
 }
