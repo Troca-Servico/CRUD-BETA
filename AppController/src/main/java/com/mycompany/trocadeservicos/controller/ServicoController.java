@@ -34,6 +34,8 @@ public class ServicoController {
     }
 
     public void atualizar(int opcao, String cpf) throws Exception {
+        List<Map<String, String>> objServico = caddb.listarServicos(cpf);
+        String id = servicoview.listarServicos(objServico);
         String campo;
         switch (opcao) {
             case 1:
@@ -59,7 +61,7 @@ public class ServicoController {
         }
         System.out.println("OK, em seguida digite sua atualização por gentileza:");
         String atualizacao = input.nextLine();
-        String retorno = caddb.atualizarServico(cpf, campo, atualizacao);
+        String retorno = caddb.atualizarServico(id, campo, atualizacao);
         System.out.println(retorno);
     }
 }

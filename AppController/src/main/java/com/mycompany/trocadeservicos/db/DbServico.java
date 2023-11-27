@@ -68,14 +68,14 @@ public class DbServico {
         return servicos;
     }
 
-    public String atualizarServico(String cpf, String campo, String atualizacao) throws Exception {
+    public String atualizarServico(String id, String campo, String atualizacao) throws Exception {
         String retorno = ""; // Inicialize a variável retorno fora do try-catch para que possa ser acessada fora do escopo
 
         try {
-            String sql = "UPDATE servicos SET " + campo + " = ? WHERE cpf = ?";
+            String sql = "UPDATE servicos SET " + campo + " = ? WHERE id = ?";
             try (Connection connect = new DbConnection().getConnection(); PreparedStatement ps = connect.prepareStatement(sql)) {
                 ps.setString(1, atualizacao);
-                ps.setString(2, cpf);
+                ps.setString(2, id);
 
                 // Executar a atualização
                 int linhasAfetadas = ps.executeUpdate();
