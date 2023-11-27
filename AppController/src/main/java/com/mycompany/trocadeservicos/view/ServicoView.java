@@ -7,6 +7,8 @@ package com.mycompany.trocadeservicos.view;
 import com.mycompany.trocadeservicos.model.Perfil;
 import java.util.Scanner;
 import com.mycompany.trocadeservicos.model.Servico;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -34,19 +36,35 @@ public class ServicoView {
         return new Servico(area, desc_serv, cidade, bairro, tempEx, cpf);
     }
 
-    public static void sucessoCadastro() {
-        System.out.println("Cadastrado com sucesso");
+    public String pesquisarServico() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Digite a area do servico:");
+        String area = input.nextLine();
+        return area;
     }
 
-    public static void falhaCadastro() {
-        System.out.println("Falha ao cadastrar");
+    public static void mostrarServicos(List<Servico> servicos) {
+        if (servicos.isEmpty()) {
+            System.out.println("Nenhum serviço encontrado para a área especificada.");
+        } else {
+            System.out.println("Lista de Serviços:");
+            for (Servico servico : servicos) {
+                System.out.println("----------------------------------------");
+                System.out.println("Área: " + servico.getArea());
+                System.out.println("Descrição do Serviço: " + servico.getDescSer());
+                System.out.println("Cidade: " + servico.getCidade());
+                System.out.println("Bairro: " + servico.getBairro());
+                System.out.println("Tempo de Experiência: " + servico.getTempoEx());
+                System.out.println("CPF: " + servico.getCpf());
+                System.out.println("----------------------------------------");
+            }
+        }
     }
 
     public String solicitarCpf() {
         Scanner input = new Scanner(System.in);
-        String cpf;
         System.out.println("digite seu cpf por gentileza:");
-        cpf = input.nextLine();
+        String cpf = input.nextLine();
         return cpf;
     }
 

@@ -36,6 +36,9 @@ public class Controller {
             case 5:
                 publicarServico();
                 break;
+            case 6:
+                pesquisarServico();
+                break;
         }
     }
 
@@ -43,6 +46,15 @@ public class Controller {
         try {
             Servico cad = servicoview.View();
             servicocon.cadastrar(cad);
+        } catch (Exception e) {
+            System.out.println("Exceção capturada: " + e.getMessage());
+        }
+    }
+
+    public void pesquisarServico() {
+        try {
+            String area = servicoview.pesquisarServico();
+            servicocon.visualizar(area);
         } catch (Exception e) {
             System.out.println("Exceção capturada: " + e.getMessage());
         }

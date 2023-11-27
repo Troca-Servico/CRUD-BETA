@@ -8,6 +8,8 @@ import com.mycompany.trocadeservicos.model.Servico;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.sql.SQLException;
 
 /**
@@ -17,7 +19,6 @@ import java.sql.SQLException;
 public class DbServico {
 
     public void salvarCadastro(Servico cadastro) throws Exception {
-
         try {
             String sql = "insert into servicos (area, desc_serv, cidade, bairro, tempo_ex, cpf) values (?, ?, ?, ?,?,?)";
             Connection connect = new DbConnection().getConnection();
@@ -35,4 +36,33 @@ public class DbServico {
             //System.exit();
         }
     }
+
+    public List<Servico> buscarServicos(String areasel) throws Exception {
+        List<Servico> servicos = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM servicos WHERE area = ?";
+            Connection connect = new DbConnection().getConnection();
+            try (PreparedStatement ps = connect.prepareStatement(sql)) {
+                ps.setString(1, areasel);
+                try (ResultSet resultSet = ps.executeQuery()) {
+                    while (resultSet.next()) {
+                        String area = resultSet.getString("area");
+                        String descServ = resultSet.getString("desc_serv");
+                        String cidade = resultSet.getString("cidade");
+                        String bairro = resultSet.getString("bairro");
+                        String tempoEx = resultSet.getString("tempo_ex");
+                        String cpf = resultSet.getString("cpf");
+                        Servico servico = new Servico(area, descServ, cidade, bairro, tempoEx, cpf);
+                        servicos.add(servico);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            // Trate a exceção conforme necessário
+        }
+        return servicos;
+    }
+
 }
