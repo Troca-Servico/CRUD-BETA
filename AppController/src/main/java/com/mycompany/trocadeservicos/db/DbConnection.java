@@ -16,7 +16,7 @@ public class DbConnection {
     
     public Connection getConnection() throws Exception {
         try{
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/trocaservice", "root", "");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/trocaservice", "root", "root");
         }catch (SQLException ex) {
             System.err.println(ex);
         } return null;
