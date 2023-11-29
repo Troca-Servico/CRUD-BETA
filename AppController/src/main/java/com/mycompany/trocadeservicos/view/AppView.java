@@ -2,6 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+/**
+ * A classe AppView é responsável pela interação com o usuário na camada de apresentação do sistema.
+ * Ela exibe menus, recebe entradas do usuário e chama métodos do controlador para realizar as operações desejadas.
+ */
 package com.mycompany.trocadeservicos.view;
 
 import com.mycompany.trocadeservicos.controller.Controller;
@@ -9,9 +13,17 @@ import com.mycompany.trocadeservicos.controller.Controller;
 import java.util.Scanner;
 
 public class AppView {
+// Instância do controlador para acesso aos métodos de lógica de negócios
 
     Controller servcont = new Controller();
 
+    /**
+     * Método que exibe o menu inicial do sistema e solicita a escolha do
+     * usuário. Chama o método correspondente do controlador com base na
+     * escolha.
+     *
+     * @throws Exception Se ocorrer uma exceção durante a execução.
+     */
     public void menuInicial() throws Exception {
         Scanner input = new Scanner(System.in);
         System.out.println("-------------------");
@@ -31,11 +43,20 @@ public class AppView {
         servcont.menu(escolha);
     }
 
+    /**
+     * Método que exibe mensagem de opção inválida.
+     */
     public static void mostraMsgInvalida() {
         System.out.println("\"OPCAO INVALIDA!!!!\" é necessario reiniciar seu cadastro! :(");
         System.out.println("-------------------------------");
     }
 
+    /**
+     * Método que solicita ao usuário se possui documentos para realizar o
+     * cadastro.
+     *
+     * @return 1 se sim, 2 se não.
+     */
     public static int mensagemAlertaCadastro() {
         Scanner input = new Scanner(System.in);
         System.out
@@ -43,6 +64,10 @@ public class AppView {
         return input.nextInt();
     }
 
+    /**
+     * Método que exibe mensagem indicando que o cadastro não será realizado por
+     * falta de documentos.
+     */
     public static void naoProcederCadastro() {
         System.out.println("Precisamos do seus dados para realizar o cadastro... Volte mais tarde!!");
         System.out.println("------------ Interação Finalizada -------------------");

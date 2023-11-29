@@ -2,6 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+/**
+ * Classe DbPerfil é responsável por interagir com o banco de dados para operações relacionadas a perfis.
+ */
 package com.mycompany.trocadeservicos.db;
 
 import java.sql.Connection;
@@ -13,12 +16,21 @@ import com.mycompany.trocadeservicos.view.PerfilView;
 
 public class DbPerfil {
 
+    /**
+     * Método para salvar um novo perfil no banco de dados.
+     *
+     * @param cadastro Objeto Perfil contendo as informações do perfil a ser
+     * cadastrado.
+     * @throws Exception Exceção geral que pode ser lançada em caso de falha na
+     * operação.
+     */
     public void salvarCadastro(Perfil cadastro) throws Exception {
 
         try {
             String sql = "insert into perfil (nome, idade, cpf, email, desc_ser, cidade, areas_interesse,bairro, tempo_ex, ft_perfil, habilidades) values (?, ?, ?, ?,?,?,?,?,?,?,?)";
             Connection connect = new DbConnection().getConnection();
             try (PreparedStatement ps = connect.prepareStatement(sql)) {
+                // Define os parâmetros na declaração SQL com base nas informações do perfil.
                 ps.setString(1, cadastro.getNome());
                 ps.setInt(2, cadastro.getIdade());
                 ps.setString(3, cadastro.getCpf());
@@ -30,6 +42,8 @@ public class DbPerfil {
                 ps.setString(9, cadastro.getTempoEx());
                 ps.setString(10, cadastro.getFtPerfil());
                 ps.setString(11, cadastro.getHabilidades());
+
+                // Executa a inserção no banco de dados.
                 ps.executeUpdate();
             }
         } catch (SQLException e) {
@@ -38,6 +52,15 @@ public class DbPerfil {
         }
     }
 
+    /**
+     * Método para buscar um perfil no banco de dados com base no CPF.
+     *
+     * @param cpf CPF do perfil a ser buscado.
+     * @return Objeto Perfil contendo as informações do perfil encontrado, ou
+     * null se não houver resultado.
+     * @throws Exception Exceção geral que pode ser lançada em caso de falha na
+     * operação.
+     */
     public Perfil buscarPerfil(String cpf) throws Exception {
         try {
             String sql = "SELECT nome, idade, cpf, email, desc_ser, cidade, areas_interesse, bairro, tempo_ex, ft_perfil, habilidades FROM perfil WHERE cpf = ?";
@@ -71,6 +94,16 @@ public class DbPerfil {
         }
     }
 
+    /**
+     * Método para atualizar informações de um perfil no banco de dados.
+     *
+     * @param cpf CPF do perfil a ser atualizado.
+     * @param campo Campo a ser atualizado (nome, idade, email, etc.).
+     * @param atualizacao Novo valor a ser atribuído ao campo.
+     * @return Mensagem indicando o resultado da operação.
+     * @throws Exception Exceção geral que pode ser lançada em caso de falha na
+     * operação.
+     */
     public String atualizarPerfil(String cpf, String campo, String atualizacao) throws Exception {
         String retorno = ""; // Inicialize a variável retorno fora do try-catch para que possa ser acessada fora do escopo
 
@@ -80,7 +113,7 @@ public class DbPerfil {
                 ps.setString(1, atualizacao);
                 ps.setString(2, cpf);
 
-                // Executar a atualização
+                // Executar a atualização e verificar o número de linhas afetadas.
                 int linhasAfetadas = ps.executeUpdate();
 
                 if (linhasAfetadas > 0) {
@@ -97,12 +130,22 @@ public class DbPerfil {
         }
     }
 
+    /**
+     * Método para deletar um perfil do banco de dados com base no CPF.
+     *
+     * @param cpf CPF do perfil a ser deletado.
+     * @return Mensagem indicando o resultado da operação.
+     * @throws Exception Exceção geral que pode ser lançada em caso de falha na
+     * operação.
+     */
     public String deletarPerfil(String cpf) throws Exception {
         String retorno = "";
         try {
             String sql = "DELETE FROM perfil WHERE cpf = ?";
             try (Connection connect = new DbConnection().getConnection(); PreparedStatement ps = connect.prepareStatement(sql)) {
                 ps.setString(1, cpf);
+
+                // Executar a exclusão e verificar o número de linhas afetadas
                 int linhasAfetadas = ps.executeUpdate();
                 if (linhasAfetadas > 0) {
                     retorno = "Exclusão realizada com sucesso!";

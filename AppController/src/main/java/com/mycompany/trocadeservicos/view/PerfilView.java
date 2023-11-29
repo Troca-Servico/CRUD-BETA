@@ -2,6 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+/**
+ * A classe PerfilView é responsável por interagir com o usuário na camada de apresentação
+ * relacionada ao cadastro e exibição de informações de perfil.
+ */
 package com.mycompany.trocadeservicos.view;
 
 import com.mycompany.trocadeservicos.model.Perfil;
@@ -9,6 +13,13 @@ import java.util.Scanner;
 
 public class PerfilView {
 
+    /**
+     * Método que solicita e recebe informações do usuário para criar um objeto
+     * Perfil.
+     *
+     * @return Objeto Perfil criado com as informações fornecidas pelo usuário.
+     * @throws Exception Se ocorrer uma exceção durante a execução.
+     */
     public static Perfil View() throws Exception {
         Scanner input = new Scanner(System.in);
         String cpf, nome, email, descServ, tempEx, areaInteresse, cidade, bairro, foto, habilidades;
@@ -42,14 +53,25 @@ public class PerfilView {
         return new Perfil(nome, idade, email, cpf, descServ, cidade, bairro, areaInteresse, tempEx, foto, habilidades);
     }
 
+    /**
+     * Método que exibe mensagem de sucesso ao cadastrar um perfil.
+     */
     public static void sucessoCadastro() {
         System.out.println("Cadastrado com sucesso");
     }
 
+    /**
+     * Método que exibe mensagem de falha ao cadastrar um perfil.
+     */
     public static void falhaCadastro() {
         System.out.println("Falha ao cadastrar");
     }
 
+    /**
+     * Método que solicita o CPF ao usuário.
+     *
+     * @return CPF fornecido pelo usuário.
+     */
     public String solicitarCpf() {
         Scanner input = new Scanner(System.in);
         String cpf;
@@ -58,6 +80,11 @@ public class PerfilView {
         return cpf;
     }
 
+    /**
+     * Método que exibe as informações de um perfil.
+     *
+     * @param perfil Objeto Perfil contendo as informações a serem exibidas.
+     */
     public void mostrarInfosPerfil(Perfil perfil) {
         System.out.println("Segue informações cadastradas no seu perfil");
         System.out.println("Nome: " + perfil.getNome());
@@ -73,6 +100,11 @@ public class PerfilView {
         System.out.println("Habilidades: " + perfil.getHabilidades());
     }
 
+    /**
+     * Método que solicita ao usuário a opção que deseja atualizar no perfil.
+     *
+     * @return Número da opção escolhida pelo usuário.
+     */
     public int selecionarOpcao() {
         Scanner input = new Scanner(System.in);
         int opcao;

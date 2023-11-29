@@ -2,6 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+/**
+ * Classe DbConnection é responsável por estabelecer uma conexão com o banco de dados.
+ */
 package com.mycompany.trocadeservicos.db;
 
 import java.sql.Connection;
@@ -13,16 +16,31 @@ import java.sql.SQLException;
  * @author gatin
  */
 public class DbConnection {
-    
+
+    /**
+     * Método para obter uma conexão com o banco de dados.
+     *
+     * @return Objeto Connection representando a conexão com o banco de dados.
+     * @throws Exception Exceção geral que pode ser lançada em caso de falha na
+     * conexão.
+     */
     public Connection getConnection() throws Exception {
-        try{
+        try {
+            // Estabelece uma conexão com o banco de dados MySQL usando JDBC.
             return DriverManager.getConnection("jdbc:mysql://localhost:3306/trocaservice", "root", "root");
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
+            // Em caso de falha, imprime o erro no console.
             System.err.println(ex);
-        } return null;
+        }
+        return null;// Retorna null se a conexão não puder ser estabelecida.
     }
     
     
+    /*
+    Foi realizado uma alteração de conecxão do bando de dados dos, de uma forma
+    mais simplicicada, mas a forma de conecxão é a mesma coisa.
+    */
+
     /*
     public static String status = "Não conectou...";
    public static Connection connection;// atributo do tipo Connection
@@ -56,5 +74,5 @@ public class DbConnection {
     public static String statusConection() {
         return status;
     }
-    */
+     */
 }

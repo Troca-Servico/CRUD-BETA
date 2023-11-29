@@ -2,6 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+/**
+ * A classe ServicoView é responsável por interagir com o usuário na camada de apresentação
+ * relacionada ao cadastro e exibição de informações de serviços.
+ */
 package com.mycompany.trocadeservicos.view;
 
 import com.mycompany.trocadeservicos.model.Perfil;
@@ -15,10 +19,17 @@ import java.lang.Thread;
 
 /**
  *
- * @author Yasmin
+ * @author Yasmin / Laryssa
  */
 public class ServicoView {
 
+    /**
+     * Método que solicita e recebe informações do usuário para criar um objeto
+     * Servico.
+     *
+     * @return Objeto Servico criado com as informações fornecidas pelo usuário.
+     * @throws Exception Se ocorrer uma exceção durante a execução.
+     */
     public static Servico View() throws Exception {
         Scanner input = new Scanner(System.in);
         String area, desc_serv, cidade, bairro, tempEx, cpf;
@@ -39,6 +50,11 @@ public class ServicoView {
         return new Servico(area, desc_serv, cidade, bairro, tempEx, cpf);
     }
 
+    /**
+     * Método que solicita a área de serviço ao usuário.
+     *
+     * @return Área de serviço fornecida pelo usuário.
+     */
     public String pesquisarServico() {
         Scanner input = new Scanner(System.in);
         System.out.println("Digite a area do servico:");
@@ -46,6 +62,11 @@ public class ServicoView {
         return area;
     }
 
+    /**
+     * Método que exibe a lista de serviços.
+     *
+     * @param servicos Lista de objetos Servico a serem exibidos.
+     */
     public static void mostrarServicos(List<Servico> servicos) {
         if (servicos.isEmpty()) {
             System.out.println("Nenhum serviço encontrado para a área especificada.");
@@ -64,6 +85,12 @@ public class ServicoView {
         }
     }
 
+    /**
+     * Método que lista os serviços e retorna o ID do serviço a ser deletado.
+     *
+     * @param infos Lista de mapas contendo informações dos serviços.
+     * @return ID do serviço a ser deletado.
+     */
     public String listarServicos(List<Map<String, String>> infos) {
         if (infos.isEmpty()) {
             System.out.println("Nenhum serviço encontrado para o cpf especificado.");
@@ -83,6 +110,11 @@ public class ServicoView {
         return null;
     }
 
+    /**
+     * Método que solicita ao usuário a opção que deseja atualizar no serviço.
+     *
+     * @return Número da opção escolhida pelo usuário.
+     */
     public int selecionarOpcao() {
         Scanner input = new Scanner(System.in);
         int opcao;
@@ -96,6 +128,11 @@ public class ServicoView {
         return opcao;
     }
 
+    /**
+     * Método que solicita ao usuário o CPF.
+     *
+     * @return CPF fornecido pelo usuário.
+     */
     public String solicitarCpf() {
         Scanner input = new Scanner(System.in);
         System.out.println("digite seu cpf por gentileza:");
@@ -103,6 +140,10 @@ public class ServicoView {
         return cpf;
     }
 
+    /**
+     * Método que simula um processo de deslogar, exibindo mensagens e
+     * aguardando 5 segundos.
+     */
     public void deslogar() {
         System.out.println("Saindo...");
         try {
@@ -113,6 +154,11 @@ public class ServicoView {
         System.out.println("*tela principal*...");
     }
 
+    /**
+     * Método que exibe as informações do perfil.
+     *
+     * @param perfil Objeto Perfil contendo as informações a serem exibidas.
+     */
     public void mostrarInfosPerfil(Perfil perfil) {
         System.out.println("Segue informações cadastradas no seu perfil");
         System.out.println("Nome: " + perfil.getNome());
@@ -128,6 +174,12 @@ public class ServicoView {
         System.out.println("Habilidades: " + perfil.getHabilidades());
     }
 
+    /**
+     * Método que lista os perfis e retorna o ID do perfil a ser avaliado.
+     *
+     * @param infos Lista de mapas contendo informações dos perfis.
+     * @return ID do perfil a ser avaliado.
+     */
     public String listarPerfis(List<Map<String, String>> infos) {
         if (infos.isEmpty()) {
             System.out.println("Nenhum serviço encontrado para o cpf especificado.");

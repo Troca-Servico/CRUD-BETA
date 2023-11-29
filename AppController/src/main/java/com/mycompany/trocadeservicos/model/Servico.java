@@ -6,7 +6,13 @@ package com.mycompany.trocadeservicos.model;
 
 /**
  *
- * @author Yasmin
+ * @author Yasmin / Laryssa
+ */
+/**
+ * A classe Servico representa um objeto que armazena informações sobre um
+ * serviço na aplicação. Este objeto contém dados como área de atuação,
+ * descrição do serviço, cidade, bairro, tempo de experiência necessário e CPF
+ * do prestador do serviço.
  */
 public class Servico {
 
@@ -18,7 +24,18 @@ public class Servico {
     private String cpf;
     private int id;
 
+    /**
+     * Construtor da classe Servico.
+     *
+     * @param area Área de atuação do serviço.
+     * @param descSer Descrição detalhada do serviço.
+     * @param cidade Cidade onde o serviço será prestado.
+     * @param bairro Bairro onde o serviço será prestado.
+     * @param tempoEx Tempo de experiência necessário para realizar o serviço.
+     * @param cpf CPF do prestador do serviço.
+     */
     public Servico(String area, String descSer, String cidade, String bairro, String tempoEx, String cpf) {
+        // Inicialização dos atributos com os valores passados como parâmetros.
         this.area = area;
         this.descSer = descSer;
         this.cidade = cidade;
@@ -27,6 +44,7 @@ public class Servico {
         this.cpf = cpf;
     }
 
+    // Métodos de acesso (getters e setters) para os atributos da classe
     public int getId() {
         return id;
     }

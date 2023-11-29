@@ -2,6 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+/**
+ * Classe DbServico é responsável por interagir com o banco de dados para operações relacionadas a serviços.
+ */
 package com.mycompany.trocadeservicos.db;
 
 import com.mycompany.trocadeservicos.model.Servico;
@@ -20,17 +23,27 @@ import java.sql.SQLException;
  */
 public class DbServico {
 
+    /**
+     * Método para salvar um novo serviço no banco de dados.
+     *
+     * @param cadastro Objeto Servico contendo as informações do serviço a ser
+     * cadastrado.
+     * @throws Exception Exceção geral que pode ser lançada em caso de falha na
+     * operação.
+     */
     public void salvarCadastro(Servico cadastro) throws Exception {
         try {
             String sql = "insert into servicos (area, desc_serv, cidade, bairro, tempo_ex, cpf) values (?, ?, ?, ?,?,?)";
             Connection connect = new DbConnection().getConnection();
             try (PreparedStatement ps = connect.prepareStatement(sql)) {
+                // Define os parâmetros na declaração SQL com base nas informações do serviço.
                 ps.setString(1, cadastro.getArea());
                 ps.setString(2, cadastro.getDescSer());
                 ps.setString(3, cadastro.getCidade());
                 ps.setString(4, cadastro.getBairro());
                 ps.setString(5, cadastro.getTempoEx());
                 ps.setString(6, cadastro.getCpf());
+                // Executa a inserção no banco de dados.
                 ps.executeUpdate();
             }
         } catch (SQLException e) {
@@ -39,6 +52,15 @@ public class DbServico {
         }
     }
 
+    /**
+     * Método para buscar serviços no banco de dados com base na área.
+     *
+     * @param areasel Área dos serviços a serem buscados.
+     * @return Lista de objetos Servico contendo as informações dos serviços
+     * encontrados.
+     * @throws Exception Exceção geral que pode ser lançada em caso de falha na
+     * operação.
+     */
     public List<Servico> buscarServicos(String areasel) throws Exception {
         List<Servico> servicos = new ArrayList<>();
 
@@ -49,6 +71,7 @@ public class DbServico {
                 ps.setString(1, areasel);
                 try (ResultSet resultSet = ps.executeQuery()) {
                     while (resultSet.next()) {
+                        // Extraindo os dados do ResultSet e criando um objeto Servico.
                         String area = resultSet.getString("area");
                         String descServ = resultSet.getString("desc_serv");
                         String cidade = resultSet.getString("cidade");
@@ -68,6 +91,16 @@ public class DbServico {
         return servicos;
     }
 
+    /**
+     * Método para atualizar informações de um serviço no banco de dados.
+     *
+     * @param id Identificador único do serviço a ser atualizado.
+     * @param campo Campo a ser atualizado (area, desc_serv, cidade, etc.).
+     * @param atualizacao Novo valor a ser atribuído ao campo.
+     * @return Mensagem indicando o resultado da operação.
+     * @throws Exception Exceção geral que pode ser lançada em caso de falha na
+     * operação.
+     */
     public String atualizarServico(String id, String campo, String atualizacao) throws Exception {
         String retorno = ""; // Inicialize a variável retorno fora do try-catch para que possa ser acessada fora do escopo
 
@@ -77,7 +110,7 @@ public class DbServico {
                 ps.setString(1, atualizacao);
                 ps.setString(2, id);
 
-                // Executar a atualização
+                // Executar a atualização e verificar o número de linhas afetadas.
                 int linhasAfetadas = ps.executeUpdate();
 
                 if (linhasAfetadas > 0) {
@@ -94,6 +127,15 @@ public class DbServico {
         }
     }
 
+    /**
+     * Método para listar serviços de um perfil no banco de dados com base no
+     * CPF.
+     *
+     * @param cpfse CPF do perfil associado aos serviços.
+     * @return Lista de mapas contendo informações dos serviços.
+     * @throws Exception Exceção geral que pode ser lançada em caso de falha na
+     * operação.
+     */
     public List<Map<String, String>> listarServicos(String cpfse) throws Exception {
         List<Map<String, String>> infosList = new ArrayList<>();
 
@@ -104,6 +146,7 @@ public class DbServico {
                 ps.setString(1, cpfse);
                 try (ResultSet resultSet = ps.executeQuery()) {
                     while (resultSet.next()) {
+                        // Criando um mapa para armazenar informações do serviço.
                         Map<String, String> infos = new HashMap<>();
                         String area = resultSet.getString("area");
                         String descServ = resultSet.getString("desc_serv");
@@ -122,20 +165,32 @@ public class DbServico {
         return infosList;
     }
 
+    /**
+     * Método para excluir um serviço do banco de dados com base no seu
+     * identificador.
+     *
+     * @param id Identificador único do serviço a ser excluído.
+     * @return Mensagem indicando o resultado da operação de exclusão.
+     * @throws Exception Exceção geral que pode ser lançada em caso de falha na
+     * operação.
+     */
     public String deletarServico(String id) throws Exception {
         String retorno = "";
         try {
+            // SQL para excluir um serviço do banco de dados com base no ID.
             String sql = "DELETE FROM servicos WHERE id = ?";
             try (Connection connect = new DbConnection().getConnection(); PreparedStatement ps = connect.prepareStatement(sql)) {
+                // Configura o ID a ser excluído.
                 ps.setString(1, id);
+                // Executa a exclusão e verifica o número de linhas afetadas.
                 int linhasAfetadas = ps.executeUpdate();
                 if (linhasAfetadas > 0) {
                     retorno = "Exclusão realizada com sucesso!";
                 } else {
-                    retorno = "Id nao identificado";
+                    retorno = "ID não identificado ou nenhum registro excluído.";
                 }
             } catch (SQLException ex) {
-                retorno = ex.getMessage();
+                retorno = ex.getMessage(); // Em caso de erro SQL, captura a mensagem de erro.
             }
             return retorno;
         } catch (Exception e) {
@@ -143,15 +198,28 @@ public class DbServico {
         }
     }
 
+    /**
+     * Método para listar os serviços associados a um perfil no banco de dados
+     * com base no CPF.
+     *
+     * @param cpfse CPF do perfil associado aos serviços.
+     * @return Lista de mapas contendo informações dos serviços associados ao
+     * perfil.
+     * @throws Exception Exceção geral que pode ser lançada em caso de falha na
+     * operação.
+     */
     public List<Map<String, String>> listarPerfis(String cpfse) throws Exception {
         List<Map<String, String>> infosList = new ArrayList<>();
 
         try {
+            // SQL para selecionar todos os perfis no banco de dados.
             String sql = "SELECT * FROM perfil";
             Connection connect = new DbConnection().getConnection();
             try (PreparedStatement ps = connect.prepareStatement(sql)) {
                 try (ResultSet resultSet = ps.executeQuery()) {
+                    // Iterar sobre os resultados do banco de dados.
                     while (resultSet.next()) {
+                        // Criando um mapa para armazenar informações do perfil.
                         Map<String, String> infos = new HashMap<>();
                         String nome = resultSet.getString("nome");
                         String cidade = resultSet.getString("cidade");
@@ -170,6 +238,16 @@ public class DbServico {
         return infosList;
     }
 
+    /**
+     * Método para avaliar um perfil no banco de dados, somando um valor
+     * específico à sua avaliação existente.
+     *
+     * @param id Identificador único do perfil a ser avaliado.
+     * @param valorASomar Valor a ser somado à avaliação atual do perfil.
+     * @return Mensagem indicando o resultado da operação.
+     * @throws Exception Exceção geral que pode ser lançada em caso de falha na
+     * operação.
+     */
     public String avaliarPerfil(String id, int valorASomar) throws Exception {
         String retorno = "";
 
@@ -192,7 +270,7 @@ public class DbServico {
                             psUpdate.setInt(1, novoValor);
                             psUpdate.setString(2, id);
 
-                            // Executar a atualização
+                            // Executar a atualização e verificar o número de linhas afetadas.
                             int linhasAfetadas = psUpdate.executeUpdate();
 
                             if (linhasAfetadas > 0) {
