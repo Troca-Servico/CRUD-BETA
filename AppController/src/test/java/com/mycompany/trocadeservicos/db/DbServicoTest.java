@@ -62,21 +62,31 @@ public class DbServicoTest {
     }
 
     /**
-     * Test of buscarServicos method, of class DbServico.
+     * Testa o método buscarServicos da classe DbServico.
+     *
+     * Este teste realiza as seguintes etapas: 1. Configura a área desejada para
+     * busca. 2. Adiciona dados ao banco de dados de teste usando o método
+     * salvarCadastro. 3. Chama o método buscarServicos para obter uma lista de
+     * serviços na área especificada. 4. Verifica se o resultado não é nulo, não
+     * está vazio e contém os dados esperados.
+     *
+     * @throws Exception Se ocorrer uma exceção durante a execução do teste.
      */
     @Test
     public void testBuscarServicos() throws Exception {
         System.out.println("buscarServicos");
+        // Passo 1: Configuração da área desejada para busca
         String areasel = "AreaTeste";  // Área que você espera encontrar
         DbServico instance = new DbServico();
 
-        // Adicione alguns dados ao banco de dados para teste
+        // Passo 2: Adição de alguns dados ao banco de dados para teste
         Servico cadastro = new Servico(areasel, "DescTeste", "CidadeTeste", "BairroTeste", "TempoTeste", "12345678901");
         instance.salvarCadastro(cadastro);
 
+        // Passo 3: Chama o método buscarServicos para obter a lista de serviços na área especificada
         List<Servico> result = instance.buscarServicos(areasel);
 
-        // Adicione asserções conforme necessário para verificar o resultado do método
+       // Passo 4: Verificações para garantir que o resultado do método é conforme o esperado
         assertNotNull(result);
         assertFalse(result.isEmpty());
         assertEquals(areasel, result.get(0).getArea());

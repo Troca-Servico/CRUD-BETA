@@ -17,36 +17,42 @@ import static org.junit.Assert.*;
  * @author gatin
  */
 public class DbConnectionTest {
-    
+
     public DbConnectionTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
     /**
-     * Test of getConnection method, of class DbConnection.
-     * @throws java.lang.Exception
+     * Testa o método getConnection da classe DbConnection.
+     *
+     * Este teste cria uma instância de DbConnection e chama o método
+     * getConnection para obter uma conexão com o banco de dados. Em seguida,
+     * verifica se a conexão não é nula, indicando que a conexão foi
+     * estabelecida com sucesso.
+     *
+     * @throws Exception Se ocorrer uma exceção durante a execução do teste.
      */
     @Test
     public void testGetConnection() throws Exception {
-    System.out.println("getConnection");
-    DbConnection instance = new DbConnection();
-    Connection result = instance.getConnection();
-    assertNotNull(result);
-}
-    
+        System.out.println("getConnection");
+        DbConnection instance = new DbConnection();
+        Connection result = instance.getConnection();
+        assertNotNull(result);
+    }
+
 }

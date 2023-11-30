@@ -22,7 +22,7 @@ public class TrocadeServicos {
     /**
      * Método principal que inicia a execução da aplicação.
      *
-     * @param args Argumentos da linha de comando (não utilizado neste caso).
+     * 
      * @throws Exception Exceção geral que pode ser lançada por operações
      * específicas.
      */

@@ -37,7 +37,12 @@ public class PerfilControllerTest {
     }
 
     /**
-     * Test of cadastrar method, of class PerfilController.
+     * Testa o método cadastrar da classe PerfilController.
+     *
+     * Este teste cria uma instância de Perfil e a cadastra usando o método
+     * cadastrar da classe PerfilController.
+     *
+     * @throws Exception Se ocorrer uma exceção durante a execução do teste.
      */
     @Test
     public void testCadastrar() throws Exception {
@@ -53,13 +58,18 @@ public class PerfilControllerTest {
 
     }
 
-
     /**
-     * Teste do método atualizar, da classe PerfilController.
+     * Testa o método atualizar da classe PerfilController.
+     *
+     * Este teste simula a atualização de um perfil, fornecendo uma opção e um
+     * novo CPF.
+     *
+     * @throws Exception Se ocorrer uma exceção durante a execução do teste.
      */
     @Test
     public void testAtualizar() throws Exception {
         System.out.println("atualizar");
+        // Configuração dos valores de teste
         int opcao = 3;
         String cpf = "12345678901";
         String input = "12345678998";
@@ -70,11 +80,16 @@ public class PerfilControllerTest {
     }
 
     /**
-     * Teste do método deletar, da classe PerfilController.
+     * Testa o método deletar da classe PerfilController.
+     *
+     * Este teste simula a exclusão de um perfil, fornecendo um CPF.
+     *
+     * @throws Exception Se ocorrer uma exceção durante a execução do teste.
      */
     @Test
     public void testDeletar() throws Exception {
         System.out.println("deletar");
+        // Configuração do valor de teste
         String cpf = "12345678901";
         PerfilController instance = new PerfilController();
         instance.deletar(cpf);

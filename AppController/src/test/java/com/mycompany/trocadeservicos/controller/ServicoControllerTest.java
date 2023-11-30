@@ -39,7 +39,7 @@ public class ServicoControllerTest {
     }
 
     /**
-     * Test of cadastrar method, of class ServicoController.
+     * Testa o método cadastrar da classe ServicoController.
      */
     @Test
     public void testCadastrar() throws Exception {
@@ -50,7 +50,13 @@ public class ServicoControllerTest {
     }
 
     /**
-     * Test of visualizar method, of class ServicoController.
+     * Testa o método visualizar da classe ServicoController.
+     *
+     * Este teste simula a inserção de dados no banco de dados de teste e
+     * verifica se o método visualizar funciona corretamente para uma
+     * determinada área.
+     *
+     * @throws Exception Se ocorrer uma exceção durante a execução do teste.
      */
     @Test
     public void testVisualizar() throws Exception {
@@ -75,7 +81,12 @@ public class ServicoControllerTest {
     }
 
     /**
-     * Test of deletar method, of class ServicoController.
+     * Testa o método deletar da classe ServicoController.
+     *
+     * Este teste simula a inserção de dados no banco de dados de teste e
+     * verifica se o método deletar funciona corretamente.
+     *
+     * @throws Exception Se ocorrer uma exceção durante a execução do teste.
      */
     @Test
     public void testDeletar() throws Exception {
@@ -97,7 +108,12 @@ public class ServicoControllerTest {
     }
 
     /**
-     * Test of atualizar method, of class ServicoController.
+     * Testa o método atualizar da classe ServicoController.
+     *
+     * Este teste simula a inserção de dados no banco de dados de teste e
+     * verifica se o método atualizar funciona corretamente.
+     *
+     * @throws Exception Se ocorrer uma exceção durante a execução do teste.
      */
     @Test
     public void testAtualizar() throws Exception {
