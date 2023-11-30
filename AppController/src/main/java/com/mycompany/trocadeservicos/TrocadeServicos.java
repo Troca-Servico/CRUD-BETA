@@ -10,13 +10,6 @@ package com.mycompany.trocadeservicos;
 
 import com.mycompany.trocadeservicos.view.AppView;
 
-/**
- *
- * <<<<<<< HEAD @a
- *
- *
- * uthor Yasmin
- */
 public class TrocadeServicos {
 
     /**
