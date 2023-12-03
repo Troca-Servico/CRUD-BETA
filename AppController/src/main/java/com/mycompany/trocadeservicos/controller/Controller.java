@@ -18,8 +18,9 @@ import com.mycompany.trocadeservicos.controller.ServicoController;
  * ServicoController).
  */
 public class Controller {
-// Instâncias das Views e Controllers necessárias para o funcionamento do sistema.
 
+    /* Instâncias das Views e Controllers necessárias para o funcionamento do sistema.
+     */
     PerfilView perfilview = new PerfilView();
     ServicoView servicoview = new ServicoView();
     PerfilController perfilcon = new PerfilController();
@@ -30,8 +31,8 @@ public class Controller {
      * sistema.
      *
      * @param escolha Número correspondente à operação desejada pelo usuário.
-     * @throws Exception Exceção geral que pode ser lançada por operações
-     * específicas.
+     * @throws Exception Exceção geral que pode ser lançada em caso de falha na
+     * conexão
      */
     public void menu(int escolha) throws Exception {
         switch (escolha) {

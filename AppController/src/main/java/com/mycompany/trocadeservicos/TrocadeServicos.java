@@ -2,14 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-/**
- * Classe principal TrocadeServicos é responsável por iniciar a aplicação,
- * criando uma instância da classe AppView e chamando o método menuInicial().
- */
+
 package com.mycompany.trocadeservicos;
 
 import com.mycompany.trocadeservicos.view.AppView;
 
+/**
+ * Classe principal TrocadeServicos é responsável por iniciar a aplicação,
+ * criando uma instância da classe AppView e chamando o método menuInicial().
+ */
 public class TrocadeServicos {
 
     /**

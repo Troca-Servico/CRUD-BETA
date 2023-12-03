@@ -2,16 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-/**
- * A classe AppView é responsável pela interação com o usuário na camada de apresentação do sistema.
- * Ela exibe menus, recebe entradas do usuário e chama métodos do controlador para realizar as operações desejadas.
- */
 package com.mycompany.trocadeservicos.view;
 
 import com.mycompany.trocadeservicos.controller.Controller;
 
 import java.util.Scanner;
 
+/**
+ * A classe AppView é responsável pela interação com o usuário na camada de
+ * apresentação do sistema. Ela exibe menus, recebe entradas do usuário e chama
+ * métodos do controlador para realizar as operações desejadas.
+ */
 public class AppView {
 // Instância do controlador para acesso aos métodos de lógica de negócios
 
@@ -66,7 +67,8 @@ public class AppView {
 
     /**
      * Método que exibe mensagem indicando que o cadastro não será realizado por
-     * falta de documentos.
+     * falta de documentos, caso ele selecione o número 2, infomando que não
+     * está com os documentos.
      */
     public static void naoProcederCadastro() {
         System.out.println("Precisamos do seus dados para realizar o cadastro... Volte mais tarde!!");

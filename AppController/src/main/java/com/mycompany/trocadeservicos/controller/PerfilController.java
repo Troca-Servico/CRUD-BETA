@@ -2,10 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-/**
- * Classe PerfilController é responsável por controlar as operações relacionadas aos perfis,
- * interagindo com o banco de dados (DbPerfil) e a visualização (PerfilView).
- */
 package com.mycompany.trocadeservicos.controller;
 
 import com.mycompany.trocadeservicos.model.Perfil;
@@ -13,6 +9,11 @@ import com.mycompany.trocadeservicos.db.DbPerfil;
 import com.mycompany.trocadeservicos.view.PerfilView;
 import java.util.Scanner;
 
+/**
+ * Classe PerfilController é responsável por controlar as operações relacionadas
+ * aos perfis, interagindo com o banco de dados (DbPerfil) e a visualização
+ * (PerfilView).
+ */
 public class PerfilController {
 
     // Scanner para entrada de dados do usuário.

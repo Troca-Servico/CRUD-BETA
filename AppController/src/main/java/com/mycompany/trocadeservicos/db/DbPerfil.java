@@ -2,9 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-/**
- * Classe DbPerfil é responsável por interagir com o banco de dados para operações relacionadas a perfis.
- */
 package com.mycompany.trocadeservicos.db;
 
 import java.sql.Connection;
@@ -14,6 +11,10 @@ import java.sql.SQLException;
 import com.mycompany.trocadeservicos.model.Perfil;
 import com.mycompany.trocadeservicos.view.PerfilView;
 
+/**
+ * Classe DbPerfil é responsável por interagir com o banco de dados para
+ * operações relacionadas a perfis.
+ */
 public class DbPerfil {
 
     /**

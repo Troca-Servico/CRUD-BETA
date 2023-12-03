@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-/**
- * A classe PerfilView é responsável por interagir com o usuário na camada de apresentação
- * relacionada ao cadastro e exibição de informações de perfil.
- */
 package com.mycompany.trocadeservicos.view;
 
 import com.mycompany.trocadeservicos.model.Perfil;
 import java.util.Scanner;
 
+/**
+ * A classe PerfilView é responsável por interagir com o usuário na camada de
+ * apresentação relacionada ao cadastro e exibição de informações de perfil.
+ */
 public class PerfilView {
 
     /**
@@ -83,7 +83,9 @@ public class PerfilView {
     /**
      * Método que exibe as informações de um perfil.
      *
-     * @param perfil Objeto Perfil contendo as informações a serem exibidas.
+     * @param perfil Objeto Perfil contendo as informações a serem exibidas como
+     * (nome, idade, email, cpf, descServ, cidade, bairro, areaInteresse,
+     * tempEx, foto, habilidades);.
      */
     public void mostrarInfosPerfil(Perfil perfil) {
         System.out.println("Segue informações cadastradas no seu perfil");

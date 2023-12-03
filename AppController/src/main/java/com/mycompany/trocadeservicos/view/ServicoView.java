@@ -2,10 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-/**
- * A classe ServicoView é responsável por interagir com o usuário na camada de apresentação
- * relacionada ao cadastro e exibição de informações de serviços.
- */
 package com.mycompany.trocadeservicos.view;
 
 import com.mycompany.trocadeservicos.model.Perfil;
@@ -18,8 +14,8 @@ import java.lang.InterruptedException;
 import java.lang.Thread;
 
 /**
- *
- * @author Yasmin / Laryssa
+ * A classe ServicoView é responsável por interagir com o usuário na camada de
+ * apresentação relacionada ao cadastro e exibição de informações de serviços.
  */
 public class ServicoView {
 

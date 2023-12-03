@@ -2,9 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-/**
- * Classe DbConnection é responsável por estabelecer uma conexão com o banco de dados.
- */
 package com.mycompany.trocadeservicos.db;
 
 import java.sql.Connection;
@@ -12,8 +9,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- *
- * @author gatin
+ * Classe DbConnection é responsável por estabelecer uma conexão com o banco de
+ * dados.
  */
 public class DbConnection {
 
@@ -34,14 +31,13 @@ public class DbConnection {
         }
         return null;// Retorna null se a conexão não puder ser estabelecida.
     }
-    
-    
+
     /*
     Foi realizado uma alteração de conecxão do bando de dados dos, de uma forma
     mais simplicicada, mas a forma de conecxão é a mesma coisa.
-    */
+     */
 
-    /*
+ /*
     public static String status = "Não conectou...";
    public static Connection connection;// atributo do tipo Connection
 

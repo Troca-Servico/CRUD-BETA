@@ -2,10 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-/**
- * Classe ServicoController é responsável por controlar as operações relacionadas aos serviços,
- * interagindo com o banco de dados (DbServico) e a visualização (ServicoView).
- */
 package com.mycompany.trocadeservicos.controller;
 
 import com.mycompany.trocadeservicos.db.DbServico;
@@ -15,6 +11,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Map;
 
+/**
+ * Classe ServicoController é responsável por controlar as operações
+ * relacionadas aos serviços, interagindo com o banco de dados (DbServico) e a
+ * visualização (ServicoView).
+ */
 public class ServicoController {
 
     // Scanner para entrada de dados do usuário.

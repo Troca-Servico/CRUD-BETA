@@ -45,54 +45,120 @@ public class Servico {
     }
 
     // Métodos de acesso (getters e setters) para os atributos da classe
+    /**
+     * Obtém o ID do serviço.
+     *
+     * @return O ID do serviço.
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Obtém o CPF do prestador do serviço.
+     *
+     * @return O CPF do prestador do serviço.
+     */
     public String getCpf() {
         return cpf;
     }
 
+    /**
+     * Define o CPF do prestador do serviço.
+     *
+     * @param cpf O novo CPF do prestador do serviço.
+     */
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
+    /**
+     * Obtém a área de atuação do serviço.
+     *
+     * @return A área de atuação do serviço.
+     */
     public String getArea() {
         return area;
     }
 
+    /**
+     * Define a área de atuação do serviço.
+     *
+     * @param area A nova área de atuação do serviço.
+     */
     public void setArea(String area) {
         this.area = area;
     }
 
+    /**
+     * Obtém a descrição detalhada do serviço.
+     *
+     * @return A descrição detalhada do serviço.
+     */
     public String getDescSer() {
         return descSer;
     }
 
+    /**
+     * Define a descrição detalhada do serviço.
+     *
+     * @param descSer A nova descrição detalhada do serviço.
+     */
     public void setDescSer(String descSer) {
         this.descSer = descSer;
     }
 
+    /**
+     * Obtém a cidade onde o serviço será prestado.
+     *
+     * @return A cidade onde o serviço será prestado.
+     */
     public String getCidade() {
         return cidade;
     }
 
+    /**
+     * Define a cidade onde o serviço será prestado.
+     *
+     * @param cidade A nova cidade onde o serviço será prestado.
+     */
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
 
+    /**
+     * Obtém o bairro onde o serviço será prestado.
+     *
+     * @return O bairro onde o serviço será prestado.
+     */
     public String getBairro() {
         return bairro;
     }
 
+    /**
+     * Define o bairro onde o serviço será prestado.
+     *
+     * @param bairro O novo bairro onde o serviço será prestado.
+     */
     public void setBairro(String bairro) {
         this.bairro = bairro;
     }
 
+    /**
+     * Obtém o tempo de experiência necessário para realizar o serviço.
+     *
+     * @return O tempo de experiência necessário para realizar o serviço.
+     */
     public String getTempoEx() {
         return tempoEx;
     }
 
+    /**
+     * Define o tempo de experiência necessário para realizar o serviço.
+     *
+     * @param tempoEx O novo tempo de experiência necessário para realizar o
+     * serviço.
+     */
     public void setTempoEx(String tempoEx) {
         this.tempoEx = tempoEx;
     }

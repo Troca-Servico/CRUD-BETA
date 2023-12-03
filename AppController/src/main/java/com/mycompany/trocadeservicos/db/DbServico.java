@@ -2,9 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-/**
- * Classe DbServico é responsável por interagir com o banco de dados para operações relacionadas a serviços.
- */
 package com.mycompany.trocadeservicos.db;
 
 import com.mycompany.trocadeservicos.model.Servico;
@@ -18,8 +15,8 @@ import java.util.Map;
 import java.sql.SQLException;
 
 /**
- *
- * @author Yasmin
+ * Classe DbServico é responsável por interagir com o banco de dados para
+ * operações relacionadas a serviços.
  */
 public class DbServico {
 
