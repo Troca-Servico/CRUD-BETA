@@ -28,22 +28,18 @@ public class DbPerfil {
     public void salvarCadastro(Perfil cadastro) throws Exception {
 
         try {
-            String sql = "insert into perfil (nome, idade, cpf, email, desc_ser, cidade, areas_interesse,bairro, tempo_ex, ft_perfil, habilidades) values (?, ?, ?, ?,?,?,?,?,?,?,?)";
+            String sql = "insert into perfil (nome, sexo,idade, cpf, email, areas_interesse,ft_perfil, habilidades) values (?, ?, ?, ?,?,?,?,?)";
             Connection connect = new DbConnection().getConnection();
             try (PreparedStatement ps = connect.prepareStatement(sql)) {
                 // Define os parâmetros na declaração SQL com base nas informações do perfil.
                 ps.setString(1, cadastro.getNome());
-                ps.setInt(2, cadastro.getIdade());
-                ps.setString(3, cadastro.getCpf());
-                ps.setString(4, cadastro.getEmail());
-                ps.setString(5, cadastro.getDescSer());
-                ps.setString(6, cadastro.getCidade());
-                ps.setString(7, cadastro.getAreasInteresse());
-                ps.setString(8, cadastro.getBairro());
-                ps.setString(9, cadastro.getTempoEx());
-                ps.setString(10, cadastro.getFtPerfil());
-                ps.setString(11, cadastro.getHabilidades());
-
+                ps.setString(2, cadastro.getSexo());
+                ps.setInt(3, cadastro.getIdade());
+                ps.setString(4, cadastro.getCpf());
+                ps.setString(5, cadastro.getEmail());
+                ps.setString(6, cadastro.getAreasInteresse());
+                ps.setString(7, cadastro.getFtPerfil());
+                ps.setString(8, cadastro.getHabilidades());
                 // Executa a inserção no banco de dados.
                 ps.executeUpdate();
             }
@@ -64,27 +60,24 @@ public class DbPerfil {
      */
     public Perfil buscarPerfil(String cpf) throws Exception {
         try {
-            String sql = "SELECT nome, idade, cpf, email, desc_ser, cidade, areas_interesse, bairro, tempo_ex, ft_perfil, habilidades FROM perfil WHERE cpf = ?";
+            String sql = "SELECT nome, sexo,idade, cpf, email, areas_interesse, ft_perfil, habilidades FROM perfil WHERE cpf = ?";
             try (Connection connect = new DbConnection().getConnection(); PreparedStatement ps = connect.prepareStatement(sql)) {
                 ps.setString(1, cpf);
                 try (ResultSet resultSet = ps.executeQuery()) {
                     if (resultSet.next()) {
                         // Extraindo os dados do ResultSet
                         String nome = resultSet.getString("nome");
+                        String sexo = resultSet.getString("sexo");
                         int idade = resultSet.getInt("idade");
                         String cpfResult = resultSet.getString("cpf");
                         String email = resultSet.getString("email");
-                        String descSer = resultSet.getString("desc_ser");
-                        String cidade = resultSet.getString("cidade");
                         String areasInteresse = resultSet.getString("areas_interesse");
-                        String bairro = resultSet.getString("bairro");
-                        String tempoEx = resultSet.getString("tempo_ex");
                         String ftPerfil = resultSet.getString("ft_perfil");
                         String habilidades = resultSet.getString("habilidades");
-                        Perfil perfil = new Perfil(nome, idade, email, cpfResult, descSer, cidade, bairro, areasInteresse, tempoEx, ftPerfil, habilidades);
+                        Perfil perfil = new Perfil(nome, sexo, idade, email, cpfResult, areasInteresse, ftPerfil, habilidades);
                         return perfil;
                     } else {
-                        return null;
+                        throw new Exception("Erro ao buscar perfil: PERFIL NAO LOCALIZADO");
                         //System.out.println("Nenhum resultado encontrado para o CPF informado.");
                     }
                 }

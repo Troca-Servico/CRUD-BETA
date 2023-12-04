@@ -24,6 +24,11 @@ public class Perfil {
     private String tempoEx;
     private String ftPerfil;
     private String habilidades;
+    private String instagram;
+    private String facebook;
+    private String linkedin;
+    private String whatsapp;
+    private String sexo;
 
     /**
      * Construtor da classe Perfil.
@@ -40,20 +45,17 @@ public class Perfil {
      * @param ftPerfil Caminho ou identificador da foto de perfil do usuário.
      * @param habilidades Habilidades ou competências do usuário.
      */
-    public Perfil(String nome, int idade, String email, String cpf, String descSer, String cidade, String bairro,
-            String areasInteresse, String tempoEx, String ftPerfil, String habilidades) {
+    public Perfil(String nome, String sexo, int idade, String email, String cpf,
+            String areasInteresse, String ftPerfil, String habilidades) {
         // Inicialização dos atributos com os valores passados como parâmetros.
         this.nome = nome;
         this.idade = idade;
         this.email = email;
         this.cpf = cpf;
-        this.descSer = descSer;
-        this.cidade = cidade;
-        this.bairro = bairro;
         this.areasInteresse = areasInteresse;
-        this.tempoEx = tempoEx;
         this.ftPerfil = ftPerfil;
         this.habilidades = habilidades;
+        this.sexo = sexo;
     }
 
     // Métodos de acesso (getters e setters) para os atributos da classe
@@ -74,6 +76,16 @@ public class Perfil {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    
 
     /**
      * Obtém a descrição dos serviços oferecidos pelo usuário.

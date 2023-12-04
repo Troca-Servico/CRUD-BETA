@@ -22,35 +22,29 @@ public class PerfilView {
      */
     public static Perfil View() throws Exception {
         Scanner input = new Scanner(System.in);
-        String cpf, nome, email, descServ, tempEx, areaInteresse, cidade, bairro, foto, habilidades;
+        String cpf, nome, sexo, email, areaInteresse, foto, habilidades;
         int idade;
 
         System.out.println("Vamos iniciar!");
+        System.out.println("Digite seu CPF:");
+        cpf = input.nextLine();
         System.out.println("Digite seu primeiro e segundo nome:");
-        nome = input.nextLine();
-        System.out.println("Digite seu endereço de e-mail:");
+        nome = input.nextLine().toUpperCase();
+        System.out.println("Digite seu endereço de e-mail:"); // tratar
         email = input.nextLine();
         System.out.println("Digite sua idade:");
         idade = input.nextInt();
         input.nextLine();  // Consumir a quebra de linha após a leitura da idade
-        System.out.println("Digite a descrição do seu serviço oferecido:");
-        descServ = input.nextLine();
-        System.out.println("Digite seu tempo de experiencia:");
-        tempEx = input.nextLine();
         System.out.println("Digite sua área de interesse separando por vírgulas:");
-        areaInteresse = input.nextLine();
-        System.out.println("Digite a cidade do estabelecimento:");
-        cidade = input.nextLine();
-        System.out.println("Digite o bairro do estabelecimento:");
-        bairro = input.nextLine();
+        areaInteresse = input.nextLine().toUpperCase();
         System.out.println("Insira foto de perfil:");
         foto = input.nextLine();
-        System.out.println("Digite suas habilidades:");
-        habilidades = input.nextLine();
-        System.out.println("Digite seu CPF:");
-        cpf = input.nextLine();
+        System.out.println("Descreva suas habilidades:");
+        habilidades = input.nextLine().toUpperCase();
+        System.out.println("Digite M para masculino e F para feminino:");
+        sexo = input.nextLine().toUpperCase();
         System.out.println("Processando...");
-        return new Perfil(nome, idade, email, cpf, descServ, cidade, bairro, areaInteresse, tempEx, foto, habilidades);
+        return new Perfil(nome, sexo, idade, email, cpf, areaInteresse, foto, habilidades);
     }
 
     /**
@@ -88,16 +82,15 @@ public class PerfilView {
      * tempEx, foto, habilidades);.
      */
     public void mostrarInfosPerfil(Perfil perfil) {
-        System.out.println("Segue informações cadastradas no seu perfil");
+        System.out.println("                             ");
+        System.out.println("Segue informações cadastradas no seu perfil:");
         System.out.println("Nome: " + perfil.getNome());
+        System.out.println("Sexo: " + perfil.getSexo());
         System.out.println("Idade: " + perfil.getIdade());
         System.out.println("CPF: " + perfil.getCpf());
         System.out.println("Email: " + perfil.getEmail());
         System.out.println("Descrição do serviço: " + perfil.getDescSer());
-        System.out.println("Cidade do estabelecimento: " + perfil.getCidade());
-        System.out.println("Bairro do estabelecimento:: " + perfil.getBairro());
         System.out.println("Areas de interresse: " + perfil.getAreasInteresse());
-        System.out.println("Tempo de experiência: " + perfil.getTempoEx());
         System.out.println("Foto de perfil: " + perfil.getFtPerfil());
         System.out.println("Habilidades: " + perfil.getHabilidades());
     }

@@ -30,7 +30,7 @@ public class DbServico {
      */
     public void salvarCadastro(Servico cadastro) throws Exception {
         try {
-            String sql = "insert into servicos (area, desc_serv, cidade, bairro, tempo_ex, cpf) values (?, ?, ?, ?,?,?)";
+            String sql = "insert into servicos (area, desc_serv, cidade, bairro, tempo_ex, cpf, instagram,facebook,linkedin,whatsapp) values (?, ?, ?, ?,?,?,?,?,?,?)";
             Connection connect = new DbConnection().getConnection();
             try (PreparedStatement ps = connect.prepareStatement(sql)) {
                 // Define os parâmetros na declaração SQL com base nas informações do serviço.
@@ -40,6 +40,10 @@ public class DbServico {
                 ps.setString(4, cadastro.getBairro());
                 ps.setString(5, cadastro.getTempoEx());
                 ps.setString(6, cadastro.getCpf());
+                ps.setString(7, cadastro.getInstagram());
+                ps.setString(8, cadastro.getFacebook());
+                ps.setString(9, cadastro.getLinkedin());
+                ps.setString(10, cadastro.getWhatsapp());
                 // Executa a inserção no banco de dados.
                 ps.executeUpdate();
             }
@@ -58,14 +62,15 @@ public class DbServico {
      * @throws Exception Exceção geral que pode ser lançada em caso de falha na
      * operação.
      */
-    public List<Servico> buscarServicos(String areasel) throws Exception {
+    public List<Servico> buscarServicos(String areasel, String cpfIgnorar) throws Exception {
         List<Servico> servicos = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM servicos WHERE area = ?";
+            String sql = "SELECT * FROM servicos WHERE area = ? AND cpf <> ?";
             Connection connect = new DbConnection().getConnection();
             try (PreparedStatement ps = connect.prepareStatement(sql)) {
                 ps.setString(1, areasel);
+                ps.setString(2, cpfIgnorar);
                 try (ResultSet resultSet = ps.executeQuery()) {
                     while (resultSet.next()) {
                         // Extraindo os dados do ResultSet e criando um objeto Servico.
@@ -76,7 +81,45 @@ public class DbServico {
                         String tempoEx = resultSet.getString("tempo_ex");
                         String cpf = resultSet.getString("cpf");
                         String id = resultSet.getString("id");
-                        Servico servico = new Servico(area, descServ, cidade, bairro, tempoEx, cpf);
+                        String instagram = resultSet.getString("instagram");
+                        String facebook = resultSet.getString("facebook");
+                        String linkedin = resultSet.getString("linkedin");
+                        String whatsapp = resultSet.getString("whatsapp");
+                        Servico servico = new Servico(area, descServ, cidade, bairro, tempoEx, cpf, instagram, facebook, linkedin, whatsapp);
+                        servicos.add(servico);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            // Trate a exceção conforme necessário
+        }
+        return servicos;
+    }
+
+    public List<Servico> buscarMeusServicos(String cpfserv) throws Exception {
+        List<Servico> servicos = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM servicos WHERE cpf = ?";
+            Connection connect = new DbConnection().getConnection();
+            try (PreparedStatement ps = connect.prepareStatement(sql)) {
+                ps.setString(1, cpfserv);
+                try (ResultSet resultSet = ps.executeQuery()) {
+                    while (resultSet.next()) {
+                        // Extraindo os dados do ResultSet e criando um objeto Servico.
+                        String area = resultSet.getString("area");
+                        String descServ = resultSet.getString("desc_serv");
+                        String cidade = resultSet.getString("cidade");
+                        String bairro = resultSet.getString("bairro");
+                        String tempoEx = resultSet.getString("tempo_ex");
+                        String cpf = resultSet.getString("cpf");
+                        String id = resultSet.getString("id");
+                        String instagram = resultSet.getString("instagram");
+                        String facebook = resultSet.getString("facebook");
+                        String linkedin = resultSet.getString("linkedin");
+                        String whatsapp = resultSet.getString("whatsapp");
+                        Servico servico = new Servico(area, descServ, cidade, bairro, tempoEx, cpf, instagram, facebook, linkedin, whatsapp);
                         servicos.add(servico);
                     }
                 }
@@ -210,20 +253,19 @@ public class DbServico {
 
         try {
             // SQL para selecionar todos os perfis no banco de dados.
-            String sql = "SELECT * FROM perfil";
+            String sql = "SELECT * FROM perfil WHERE cpf <> ?";
             Connection connect = new DbConnection().getConnection();
             try (PreparedStatement ps = connect.prepareStatement(sql)) {
+                ps.setString(1, cpfse);
                 try (ResultSet resultSet = ps.executeQuery()) {
                     // Iterar sobre os resultados do banco de dados.
                     while (resultSet.next()) {
                         // Criando um mapa para armazenar informações do perfil.
                         Map<String, String> infos = new HashMap<>();
                         String nome = resultSet.getString("nome");
-                        String cidade = resultSet.getString("cidade");
                         String id = resultSet.getString("id");
                         infos.put("id", id);
                         infos.put("nome", nome);
-                        infos.put("cidade", cidade);
                         infosList.add(infos);
                     }
                 }

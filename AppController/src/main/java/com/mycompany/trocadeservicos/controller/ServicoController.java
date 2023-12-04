@@ -46,10 +46,16 @@ public class ServicoController {
      * @throws Exception Exceção geral que pode ser lançada por operações
      * específicas.
      */
-    public void visualizar(String area) throws Exception {
+    public void listarServicos(String area, String cpf) throws Exception {
 
         // Busca os serviços no banco de dados e exibe suas informações usando a ServicoView.
-        List<Servico> objServico = caddb.buscarServicos(area);
+        List<Servico> objServico = caddb.buscarServicos(area, cpf);
+        servicoview.mostrarServicos(objServico);
+    }
+
+    public void visualizar(String cpf) throws Exception {
+
+        List<Servico> objServico = caddb.buscarMeusServicos(cpf);
         servicoview.mostrarServicos(objServico);
     }
 
@@ -120,6 +126,18 @@ public class ServicoController {
                 break;
             case 5:
                 campo = "tempo_ex";
+                break;
+            case 6:
+                campo = "instagram";
+                break;
+            case 7:
+                campo = "facebook";
+                break;
+            case 8:
+                campo = "linkedin";
+                break;
+            case 9:
+                campo = "whatsapp";
                 break;
             // Adicione os outros casos conforme necessário
             default:

@@ -23,6 +23,10 @@ public class Servico {
     private String tempoEx;
     private String cpf;
     private int id;
+    private String whatsapp;
+    private String linkedin;
+    private String instagram;
+    private String facebook;
 
     /**
      * Construtor da classe Servico.
@@ -34,7 +38,7 @@ public class Servico {
      * @param tempoEx Tempo de experiência necessário para realizar o serviço.
      * @param cpf CPF do prestador do serviço.
      */
-    public Servico(String area, String descSer, String cidade, String bairro, String tempoEx, String cpf) {
+    public Servico(String area, String descSer, String cidade, String bairro, String tempoEx, String cpf, String instagram, String facebook, String linkedin, String whatsapp) {
         // Inicialização dos atributos com os valores passados como parâmetros.
         this.area = area;
         this.descSer = descSer;
@@ -42,6 +46,10 @@ public class Servico {
         this.bairro = bairro;
         this.tempoEx = tempoEx;
         this.cpf = cpf;
+        this.instagram = instagram;
+        this.facebook = facebook;
+        this.linkedin = linkedin;
+        this.whatsapp = whatsapp;
     }
 
     // Métodos de acesso (getters e setters) para os atributos da classe
@@ -161,5 +169,37 @@ public class Servico {
      */
     public void setTempoEx(String tempoEx) {
         this.tempoEx = tempoEx;
+    }
+
+    public void setInstagram(String link) {
+        this.instagram = link;
+    }
+
+    public String getInstagram() {
+        return instagram;
+    }
+
+    public void setFacebook(String link) {
+        this.facebook = link;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public void setLinkedin(String link) {
+        this.linkedin = link;
+    }
+
+    public String getLinkedin() {
+        return linkedin;
+    }
+
+    public void setWhatsapp(String link) {
+        this.whatsapp = link;
+    }
+
+    public String getWhatsapp() {
+        return whatsapp;
     }
 }

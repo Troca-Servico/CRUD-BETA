@@ -6,6 +6,7 @@ com\mycompany\trocadeservicos\model\Perfil.class
 com\mycompany\trocadeservicos\view\PerfilView.class
 com\mycompany\trocadeservicos\AppController.class
 com\mycompany\trocadeservicos\controller\PerfilController.class
+com\mycompany\trocadeservicos\controller\TrocaController.class
 com\mycompany\trocadeservicos\db\DbServico.class
 com\mycompany\trocadeservicos\model\Servico.class
 com\mycompany\trocadeservicos\controller\Controller.class

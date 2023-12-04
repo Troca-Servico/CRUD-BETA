@@ -11,6 +11,7 @@ import com.mycompany.trocadeservicos.view.PerfilView;
 import com.mycompany.trocadeservicos.view.ServicoView;
 import com.mycompany.trocadeservicos.controller.PerfilController;
 import com.mycompany.trocadeservicos.controller.ServicoController;
+import com.mycompany.trocadeservicos.db.DbPerfil;
 
 /**
  * Classe Controller é responsável por coordenar as interações entre as Views
@@ -21,6 +22,7 @@ public class Controller {
 
     /* Instâncias das Views e Controllers necessárias para o funcionamento do sistema.
      */
+    DbPerfil caddb = new DbPerfil();
     PerfilView perfilview = new PerfilView();
     ServicoView servicoview = new ServicoView();
     PerfilController perfilcon = new PerfilController();
@@ -65,6 +67,9 @@ public class Controller {
                 avaliarPerfis();
                 break;
             case 10:
+                visualizarMeusServicos();
+                break;
+            case 11:
                 sair();
                 break;
         }
@@ -77,7 +82,19 @@ public class Controller {
         try {
             // Solicita CPF ao usuário e chama método de avaliação do ServicoController.
             String cpf = servicoview.solicitarCpf();
+            caddb.buscarPerfil(cpf);
             servicocon.avaliar(cpf);
+        } catch (Exception e) {
+            // Trata exceção, exibindo uma mensagem amigável para o usuário.
+            System.out.println("Exceção capturada: " + e.getMessage());
+        }
+    }
+
+    public void visualizarMeusServicos() {
+        try {
+            String cpf = perfilview.solicitarCpf();
+            this.verificaExistenciaPerfil(cpf);
+            servicocon.visualizar(cpf);
         } catch (Exception e) {
             // Trata exceção, exibindo uma mensagem amigável para o usuário.
             System.out.println("Exceção capturada: " + e.getMessage());
@@ -101,6 +118,7 @@ public class Controller {
         try {
             // Solicita CPF ao usuário e chama método de deleção do ServicoController.
             String cpf = servicoview.solicitarCpf();
+            this.verificaExistenciaPerfil(cpf);
             servicocon.deletar(cpf);
         } catch (Exception e) {
             // Trata exceção, exibindo uma mensagem amigável para o usuário.
@@ -115,6 +133,7 @@ public class Controller {
         try {
             // Solicita CPF e opção ao usuário e chama método de atualização do ServicoController.
             String cpf = servicoview.solicitarCpf();
+            this.verificaExistenciaPerfil(cpf);
             int opcao = servicoview.selecionarOpcao();
             servicocon.atualizar(opcao, cpf);
         } catch (Exception e) {
@@ -129,7 +148,9 @@ public class Controller {
     public void publicarServico() {
         try {
             // Solicita dados ao usuário através da ServicoView e chama método de cadastro do ServicoController.
-            Servico cad = servicoview.View();
+            String cpf = perfilview.solicitarCpf();
+            this.verificaExistenciaPerfil(cpf);
+            Servico cad = servicoview.View(cpf);
             servicocon.cadastrar(cad);
         } catch (Exception e) {
             // Trata exceção, exibindo uma mensagem amigável para o usuário.
@@ -143,8 +164,10 @@ public class Controller {
     public void pesquisarServico() {
         try {
             // Solicita área ao usuário através da ServicoView e chama método de visualização do ServicoController.
+            String cpf = perfilview.solicitarCpf();
+            this.verificaExistenciaPerfil(cpf);
             String area = servicoview.pesquisarServico();
-            servicocon.visualizar(area);
+            servicocon.listarServicos(area, cpf);
         } catch (Exception e) {
             // Trata exceção, exibindo uma mensagem amigável para o usuário.
             System.out.println("Exceção capturada: " + e.getMessage());
@@ -188,6 +211,7 @@ public class Controller {
         try {
             // Solicita CPF e opção ao usuário e chama método de atualização do PerfilController.
             String cpf = perfilview.solicitarCpf();
+            this.verificaExistenciaPerfil(cpf);
             int opcao = perfilview.selecionarOpcao();
             perfilcon.atualizar(opcao, cpf);
         } catch (Exception e) {
@@ -207,6 +231,16 @@ public class Controller {
         } catch (Exception e) {
             // Trata exceção, exibindo uma mensagem amigável para o usuário.
             System.out.println("Exceção capturada: " + e.getMessage());
+        }
+    }
+
+    public void verificaExistenciaPerfil(String cpf) {
+        try {
+            caddb.buscarPerfil(cpf);
+        } catch (Exception e) {
+            // Trata exceção, exibindo uma mensagem amigável para o usuário.
+            System.out.println(e.getMessage());
+            System.exit(0);
         }
     }
 }

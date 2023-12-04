@@ -37,8 +37,10 @@ public class AppView {
         System.out.println("[6] Pesquisar Servicos");
         System.out.println("[7] Atualizar Servico");
         System.out.println("[8] Deletar Servico");
+        System.out.println("[8] Deletar Servico");
         System.out.println("[9] Avaliar Perfil");
-        System.out.println("[10] Sair");
+        System.out.println("[10] Visualizar meus Servicos");
+        System.out.println("[11] Sair");
         System.out.println("-------------------");
         int escolha = input.nextInt();
         servcont.menu(escolha);

@@ -26,24 +26,32 @@ public class ServicoView {
      * @return Objeto Servico criado com as informações fornecidas pelo usuário.
      * @throws Exception Se ocorrer uma exceção durante a execução.
      */
-    public static Servico View() throws Exception {
+    public static Servico View(String cpf) throws Exception {
         Scanner input = new Scanner(System.in);
-        String area, desc_serv, cidade, bairro, tempEx, cpf;
+        cpf = cpf;
+        String area, desc_serv, cidade, bairro, tempEx, instagram, facebook, linkedin, whatsapp;
         System.out.println("Vamos iniciar!");
-        System.out.println("Digite seu cpf:");
-        cpf = input.nextLine();
         System.out.println("Digite a area do seu servico:");
-        area = input.nextLine();
+        area = input.nextLine().toUpperCase();
         System.out.println("Digite uma breve descrição do seu serviço:");
-        desc_serv = input.nextLine();
+        desc_serv = input.nextLine().toUpperCase();
         System.out.println("Digite a cidade onde seu servço reside:");
-        cidade = input.nextLine();
+        cidade = input.nextLine().toUpperCase();
         System.out.println("Digite o bairro onde seu servço reside:");
-        bairro = input.nextLine();
+        bairro = input.nextLine().toUpperCase();
         System.out.println("Digite seu tempo de experiencia:");
         tempEx = input.nextLine();
+        System.out.println("Agora vamos ativas suas redes sociais para que possam entrar em contato com voce!");
+        System.out.println("Insira o nome do seu perfil instagram comercial");
+        instagram = "instagram.com/" + input.nextLine() + "/";
+        System.out.println("Insira o numero do whatsapp comercial");
+        whatsapp = "api.whatsapp.com/send/?phone=" + input.nextLine();
+        System.out.println("Insira o link do seu perfil facebook comercial");
+        facebook = input.nextLine();
+        System.out.println("Insira o link do seu perfil LinkedIn");
+        linkedin = input.nextLine();
         System.out.println("Processando...");
-        return new Servico(area, desc_serv, cidade, bairro, tempEx, cpf);
+        return new Servico(area, desc_serv, cidade, bairro, tempEx, cpf, instagram, facebook, linkedin, whatsapp);
     }
 
     /**
@@ -66,6 +74,7 @@ public class ServicoView {
     public static void mostrarServicos(List<Servico> servicos) {
         if (servicos.isEmpty()) {
             System.out.println("Nenhum serviço encontrado para a área especificada.");
+            System.exit(0);
         } else {
             System.out.println("Lista de Serviços:");
             for (Servico servico : servicos) {
@@ -76,6 +85,7 @@ public class ServicoView {
                 System.out.println("Bairro: " + servico.getBairro());
                 System.out.println("Tempo de Experiência: " + servico.getTempoEx());
                 System.out.println("CPF: " + servico.getCpf());
+                System.out.println("Whatsapp: " + servico.getWhatsapp() + "\nFacebok: " + servico.getFacebook() + "\nLinkedin: " + servico.getLinkedin() + "\nInstagram: " + servico.getInstagram());
                 System.out.println("----------------------------------------");
             }
         }
@@ -99,7 +109,7 @@ public class ServicoView {
                 System.out.println("Descrição do Serviço: " + info.get("descricao"));
             }
             Scanner input = new Scanner(System.in);
-            System.out.println("Agora digite o ID do servico que deseja deletar");
+            System.out.println("Agora digite o ID do servico que deseja");
             String id = input.nextLine();
             return id;
         }
@@ -119,7 +129,11 @@ public class ServicoView {
         System.out.println("[2] Atualizar descricao do serviço");
         System.out.println("[3] Atualizar cidade");
         System.out.println("[4] Atualizar bairro");
-        System.out.println("[9] Atualizar tempo de experiencia");
+        System.out.println("[5] Atualizar tempo de experiencia");
+        System.out.println("[6] Atualizar instagram");
+        System.out.println("[7] Atualizar facebook");
+        System.out.println("[8] Atualizar linkedin");
+        System.out.println("[9] Atualizar whatsapp");
         opcao = input.nextInt();
         return opcao;
     }
@@ -178,7 +192,8 @@ public class ServicoView {
      */
     public String listarPerfis(List<Map<String, String>> infos) {
         if (infos.isEmpty()) {
-            System.out.println("Nenhum serviço encontrado para o cpf especificado.");
+            System.out.println("Nao ah perfis para valiar.");
+            System.exit(0);
         } else {
             System.out.println("Lista de perfis:");
             for (Map<String, String> info : infos) {
