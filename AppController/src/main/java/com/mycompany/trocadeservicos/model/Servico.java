@@ -37,6 +37,10 @@ public class Servico {
      * @param bairro Bairro onde o serviço será prestado.
      * @param tempoEx Tempo de experiência necessário para realizar o serviço.
      * @param cpf CPF do prestador do serviço.
+     * @param instagram Perfil do prestador no Instagram.
+     * @param facebook Perfil do prestador no Facebook.
+     * @param linkedin Perfil do prestador no LinkedIn.
+     * @param whatsapp Número de WhatsApp do prestador.
      */
     public Servico(String area, String descSer, String cidade, String bairro, String tempoEx, String cpf, String instagram, String facebook, String linkedin, String whatsapp) {
         // Inicialização dos atributos com os valores passados como parâmetros.
@@ -171,34 +175,74 @@ public class Servico {
         this.tempoEx = tempoEx;
     }
 
+    /**
+     * Define o link do perfil do Instagram do prestador de serviço.
+     *
+     * @param link Link do perfil do Instagram.
+     */
     public void setInstagram(String link) {
         this.instagram = link;
     }
 
+    /**
+     * Obtém o link do perfil do Instagram do prestador de serviço.
+     *
+     * @return Link do perfil do Instagram.
+     */
     public String getInstagram() {
         return instagram;
     }
 
+    /**
+     * Define o link do perfil do Facebook do prestador de serviço.
+     *
+     * @param link Link do perfil do Facebook.
+     */
     public void setFacebook(String link) {
         this.facebook = link;
     }
 
+    /**
+     * Obtém o link do perfil do Facebook do prestador de serviço.
+     *
+     * @return Link do perfil do Facebook.
+     */
     public String getFacebook() {
         return facebook;
     }
 
+    /**
+     * Define o link do perfil do LinkedIn do prestador de serviço.
+     *
+     * @param link Link do perfil do LinkedIn.
+     */
     public void setLinkedin(String link) {
         this.linkedin = link;
     }
 
+    /**
+     * Obtém o link do perfil do LinkedIn do prestador de serviço.
+     *
+     * @return Link do perfil do LinkedIn.
+     */
     public String getLinkedin() {
         return linkedin;
     }
 
+    /**
+     * Define o número de WhatsApp do prestador de serviço.
+     *
+     * @param link Número de WhatsApp.
+     */
     public void setWhatsapp(String link) {
         this.whatsapp = link;
     }
 
+    /**
+     * Obtém o número de WhatsApp do prestador de serviço.
+     *
+     * @return Número de WhatsApp.
+     */
     public String getWhatsapp() {
         return whatsapp;
     }

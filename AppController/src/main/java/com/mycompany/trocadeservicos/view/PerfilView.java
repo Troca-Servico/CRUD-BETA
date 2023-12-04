@@ -114,7 +114,7 @@ public class PerfilView {
         System.out.println("[8] Atualizar areas de interesse");
         System.out.println("[9] Atualizar tempo de experiencia");
         System.out.println("[10] Atualizar foto do perfil");
-        System.out.println("[10] Atualizar habilidades");
+        System.out.println("[11] Atualizar habilidades");
         opcao = input.nextInt();
         return opcao;
     }

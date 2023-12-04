@@ -12,8 +12,9 @@ import java.util.Scanner;
 import java.util.Map;
 
 /**
- *
- * @author Yasmin
+ * Controlador para operações relacionadas à troca de serviços. Gerencia
+ * interações entre a camada de visão (ServicoView) e a camada de dados
+ * (DbServico). Utiliza um Scanner para entrada do usuário.
  */
 public class TrocaController {
 
@@ -21,10 +22,20 @@ public class TrocaController {
     DbServico caddb = new DbServico();
     ServicoView servicoview = new ServicoView();
 
+    /**
+     * Deleta um serviço associado a um perfil com base no CPF fornecido.
+     *
+     * @param cpf O CPF do perfil associado aos serviços.
+     * @throws Exception Se ocorrer um erro durante o processo de deleção.
+     */
     public void deletar(String cpf) throws Exception {
+        // Lista os serviços associados ao perfil com o CPF fornecido.
         List<Map<String, String>> objServico = caddb.listarServicos(cpf);
+        // Solicita ao usuário selecionar o serviço a ser deletado.
         String id = servicoview.listarServicos(objServico);
+        // Deleta o serviço com o ID fornecido.
         String retorno = caddb.deletarServico(id);
+        // Exibe o resultado da deleção.
         System.out.println(retorno);
     }
 }

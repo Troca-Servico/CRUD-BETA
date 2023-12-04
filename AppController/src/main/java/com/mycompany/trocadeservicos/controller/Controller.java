@@ -76,7 +76,9 @@ public class Controller {
     }
 
     /**
-     * Método para avaliar perfis.
+     * Permite ao usuário avaliar perfis. Solicita o CPF do usuário, busca o
+     * perfil associado ao CPF no banco de dados e, em caso de sucesso, chama o
+     * método de avaliação do ServicoController.
      */
     public void avaliarPerfis() {
         try {
@@ -90,10 +92,18 @@ public class Controller {
         }
     }
 
+    /**
+     * Exibe os serviços relacionados ao perfil associado ao CPF fornecido.
+     * Solicita o CPF do usuário, verifica a existência do perfil correspondente
+     * e, em caso de sucesso, chama o método de visualização de serviços.
+     */
     public void visualizarMeusServicos() {
         try {
+            // Solicitar o CPF do usuário através da view
             String cpf = perfilview.solicitarCpf();
+            // Verificar a existência do perfil associado ao CPF fornecido
             this.verificaExistenciaPerfil(cpf);
+            // Chamar o método de visualização de serviços do controlador de serviços
             servicocon.visualizar(cpf);
         } catch (Exception e) {
             // Trata exceção, exibindo uma mensagem amigável para o usuário.
@@ -102,7 +112,7 @@ public class Controller {
     }
 
     /**
-     * Método para encerrar a aplicação.
+     * Encerra a aplicação chamando o método de deslogar da ServicoView.
      */
     public void sair() {
         // Chama método de deslogar da ServicoView.
@@ -111,7 +121,9 @@ public class Controller {
 
     // Métodos para operações específicas (cadastrar, visualizar, atualizar, deletar, etc.).
     /**
-     * Método para deletar um serviço.
+     * Deleta um serviço após solicitar o CPF do usuário e chamar o método de
+     * deleção na ServicoController. Trata exceções, exibindo mensagens
+     * amigáveis para o usuário em caso de falha.
      */
     public void deletarServico() {
 
@@ -127,7 +139,9 @@ public class Controller {
     }
 
     /**
-     * Método para atualizar um serviço.
+     * Atualiza um serviço após solicitar o CPF, a opção e chamar o método de
+     * atualização na ServicoController. Trata exceções, exibindo mensagens
+     * amigáveis para o usuário em caso de falha.
      */
     public void atualizarServico() {
         try {
@@ -143,7 +157,9 @@ public class Controller {
     }
 
     /**
-     * Método para publicar um serviço.
+     * Publica um serviço após solicitar dados ao usuário através da ServicoView
+     * e chamar o método de cadastro na ServicoController. Trata exceções,
+     * exibindo mensagens amigáveis para o usuário em caso de falha.
      */
     public void publicarServico() {
         try {
@@ -159,7 +175,10 @@ public class Controller {
     }
 
     /**
-     * Método para pesquisar serviços.
+     * Pesquisa por serviços em uma área específica, solicitando a área ao
+     * usuário através da ServicoView e chamando o método de visualização na
+     * ServicoController. Trata exceções, exibindo mensagens amigáveis para o
+     * usuário em caso de falha.
      */
     public void pesquisarServico() {
         try {
@@ -175,7 +194,10 @@ public class Controller {
     }
 
     /**
-     * Método para cadastrar um perfil.
+     * Realiza o cadastro de um perfil, solicitando dados ao usuário através da
+     * `PerfilView` e chamando o método de cadastro na `PerfilController`. Exibe
+     * mensagens de sucesso ou falha no cadastro usando métodos estáticos na
+     * `PerfilView`.
      */
     public void cadastrarPerfil() {
         try {
@@ -191,7 +213,9 @@ public class Controller {
     }
 
     /**
-     * Método para visualizar um perfil.
+     * Realiza a visualização de um perfil, solicitando o CPF ao usuário através
+     * da `PerfilView` e chamando o método de visualização na
+     * `PerfilController`. Exibe mensagens de erro amigáveis em caso de exceção.
      */
     public void visualizarPerfil() {
         try {
@@ -205,7 +229,10 @@ public class Controller {
     }
 
     /**
-     * Método para atualizar um perfil.
+     * Realiza a atualização de um perfil, solicitando o CPF e a opção de
+     * atualização ao usuário através da `PerfilView` e chamando o método de
+     * atualização na `PerfilController`. Exibe mensagens de erro amigáveis em
+     * caso de exceção.
      */
     public void atualizarPerfil() {
         try {
@@ -221,7 +248,9 @@ public class Controller {
     }
 
     /**
-     * Método para deletar um perfil.
+     * Realiza a deleção de um perfil, solicitando o CPF ao usuário por meio da
+     * `PerfilView` e chamando o método de deleção na `PerfilController`. Exibe
+     * mensagens de erro amigáveis em caso de exceção.
      */
     public void deletarPerfil() {
         try {
@@ -234,8 +263,16 @@ public class Controller {
         }
     }
 
+    /**
+     * Verifica a existência de um perfil com o CPF fornecido, chamando o método
+     * `buscarPerfil` na `PerfilController`. Em caso de exceção, exibe uma
+     * mensagem amigável e encerra a aplicação.
+     *
+     * @param cpf O CPF do perfil a ser verificado.
+     */
     public void verificaExistenciaPerfil(String cpf) {
         try {
+             // Chama o método buscarPerfil na PerfilController para verificar a existência do perfil.
             caddb.buscarPerfil(cpf);
         } catch (Exception e) {
             // Trata exceção, exibindo uma mensagem amigável para o usuário.

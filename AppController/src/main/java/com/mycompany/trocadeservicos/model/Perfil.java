@@ -77,15 +77,23 @@ public class Perfil {
         this.cpf = cpf;
     }
 
+    /**
+     * Define o sexo do perfil.
+     *
+     * @param sexo O sexo a ser atribuído ao perfil.
+     */
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 
+    /**
+     * Obtém o sexo do perfil.
+     *
+     * @return O sexo do perfil.
+     */
     public String getSexo() {
         return sexo;
     }
-
-    
 
     /**
      * Obtém a descrição dos serviços oferecidos pelo usuário.
